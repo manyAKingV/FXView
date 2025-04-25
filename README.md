@@ -1,2 +1,2 @@
 # FXView
-FusionX AI landscape.
+This is the AI Landscape supported by Fusionx."
