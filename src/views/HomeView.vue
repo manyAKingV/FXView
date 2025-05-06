@@ -135,6 +135,7 @@ export default {
                         return {
                             name: '',
                             describe: '',
+                            time: '',
                             website: null,
                             tags: []
                         };
@@ -147,8 +148,9 @@ export default {
 
                     // 核心匹配规则
                     const patterns = {
-                        name: /名称:\s*([^\n]+)/i,
-                        describe: /描述:\s*([^\n]+)/i,
+                        name: /名称:\s*([^\n]+)/im,
+                        describe: /^描述[：:]\s*((?:.|\n)+?)(?=\n\S+[：:]|$)/im,
+                        time: /^成立时间[：:]\s*(\d{4}?)/im,
                         website: /网站:\s*([^\n]+)/i,
                         tags: /标签分类:\s*([^\n]+)/i
                     };
@@ -156,6 +158,8 @@ export default {
                     const result = {};
                     for (const key in patterns) {
                         const match = cleanContent.match(patterns[key]);
+                        console.log(match);
+                        
                         if (key === 'tags') {
                             result[key] = (match?.[1] || '').split(';').map(tag => tag.trim()).filter(Boolean);
                         } else {
@@ -170,7 +174,7 @@ export default {
                 return x
             });
 
-            console.log(result);
+            console.log("result",result);
             
         },
         
