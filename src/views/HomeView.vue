@@ -14,8 +14,8 @@
                     <div class="ai-frameworks">
                     <h3 class="sub-title">智能城市</h3>
                     <div class="grid-container">
-                        <div class="grid-item" v-for="(conpany, index) in companies" :key="index">
-                            <img :src="`/static/icon/${conpany.name}.png`" alt="智能城市" class="tech-img" />
+                        <div class="grid-item" v-for="(company, index) in companies" :key="index" >
+                            <img :src="`/static/icon/${company.name}.png`" alt="智能城市" class="tech-img" @click="showCompanyInfo(company, $event)"/>
                         </div>
                     </div>
                     </div>
@@ -44,8 +44,6 @@
                         </div>
                     </div>
                 </div>
-                
-                
             </div>
             <div class="tech-layer">
                 <div class="section-title">服务层</div>
@@ -81,19 +79,28 @@
                 </div>
             </div>
         </a-layout-content>
+
+        <div class="popup" v-if="showPopup" :style="{ left: popupPosition.x + 'px', top: popupPosition.y + 'px' }"  >
+            <button class="close-btn" @click.stop="closePopup">×</button>
+            <h3>{{ popupData.name }}</h3>
+            <p>{{ popupData.describe }}</p>
+            <p>成立时间：{{ popupData.time }}</p>
+            <p>网站：<a :href="popupData.website" target="_blank">{{ popupData.website }}</a></p>
+            <div>标签：{{ popupData.tags.join(', ') }}</div>
+        </div>
     </div>
 </template>
   
 <script>
 import { exportToPDF } from "@/utils/pdfExport";
-// import marked from 'marked';
-// import matter from 'gray-matter';
 
 export default {
-    name: 'App',
     data() {
         return {
             companies:[],
+            showPopup: false,
+            popupData: {},
+            popupPosition: { x: 0, y: 0 }
         };
     },
 
@@ -105,6 +112,18 @@ export default {
     },
 
     methods: {
+        // 控制信息弹窗
+        showCompanyInfo(company, event) {
+            this.popupData = company;
+            this.popupPosition = {
+                x: event.clientX + 10, // 偏移一点避免遮挡鼠标
+                y: event.clientY + 10
+            };
+            this.showPopup = !this.showPopup
+        },
+        closePopup(){
+            this.showPopup = false
+        },
         // 导出pdf功能
         async handleExport(){
             // 输入div的class 和 导出的名称
@@ -263,6 +282,67 @@ export default {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain; /* 锁定纵横比，不拉伸 */
+}
+.popup {
+    position: fixed;
+    z-index: 9999;
+    padding: 24px;
+    background: rgba(24, 144, 255, 0.98); /* 更纯净的蓝色背景 */
+    color: white;
+    border-radius: 7px;
+    box-shadow: 0 12px 32px rgba(24, 144, 255, 0.3);
+    font-size: 15px;
+    line-height: 1.5;
+    max-width: 400px;
+    word-break: break-word;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 弹窗标题样式 */
+.popup h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* 段落间距优化 */
+.popup p {
+    margin: 8px 0;
+    color: #f9f9f9;
+}
+
+/* 链接样式 */
+.popup a {
+    color: #e6f7ff;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+/* 添加淡入动画 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* 关闭按钮样式 */
+.popup .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    transition: transform 0.2s;
+}
+
+.popup .close-btn:hover {
+    transform: rotate(90deg);
 }
 
 </style>    
