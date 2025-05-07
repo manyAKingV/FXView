@@ -14,8 +14,8 @@
                     <div class="ai-frameworks">
                     <h3 class="sub-title">智能城市</h3>
                     <div class="grid-container">
-                        <div class="grid-item" v-for="(img, index) in 6" :key="index">
-                            <img :src="'/static/icon/pytorch.png'" alt="智能城市" class="tech-img" />
+                        <div class="grid-item" v-for="(conpany, index) in companies" :key="index">
+                            <img :src="`/static/icon/${conpany.name}.png`" alt="智能城市" class="tech-img" />
                         </div>
                     </div>
                     </div>
@@ -94,7 +94,6 @@ export default {
     data() {
         return {
             companies:[],
-            companyData: null,
         };
     },
 
@@ -127,7 +126,6 @@ export default {
                 acc[fileName] = content;
                 return acc;
             }, {});
-            console.log('Loaded MD files:', allMDFiles);
             
             const result = Object.values(allMDFiles).map(content => {
                 const parseMD = (content) => {
@@ -146,7 +144,7 @@ export default {
                         .replace(/<br\s*\/?>/g, '\n')
                         .replace(/<\/?a[^>]*>/g, '');
 
-                    // 核心匹配规则
+                    // TODO 处理描述、名称、网站、标签为空导致的问题
                     const patterns = {
                         name: /名称:\s*([^\n]+)/im,
                         describe: /^描述[：:]\s*((?:.|\n)+?)(?=\n\S+[：:]|$)/im,
@@ -154,12 +152,10 @@ export default {
                         website: /网站:\s*([^\n]+)/i,
                         tags: /标签分类:\s*([^\n]+)/i
                     };
-
+                    
                     const result = {};
                     for (const key in patterns) {
                         const match = cleanContent.match(patterns[key]);
-                        console.log(match);
-                        
                         if (key === 'tags') {
                             result[key] = (match?.[1] || '').split(';').map(tag => tag.trim()).filter(Boolean);
                         } else {
@@ -170,12 +166,12 @@ export default {
                     return result;
                 };
                 const x = parseMD(content)
-                console.log(x);
                 return x
             });
-
-            console.log("result",result);
+            // todo 将读取的内容正常的展示到第一栏中
             
+            this.companies = result;
+            console.log("result",this.companies);
         },
         
     }
@@ -232,33 +228,41 @@ export default {
   margin-bottom: 0.5%;
   margin-left: 10px;
   background: white;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .sub-title {
   color: #595959;
-  margin-bottom: 12px;
-  font-size: 16px;
-}
-.grid-container {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.grid-item {
-  text-align: center;
-  padding: 8px;
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
-  transition: transform 0.2s; /* 悬停动画 */
+  margin-bottom: 2%;
+  margin-top: 0%;
+  font-size: 7%;
 }
 
 .grid-item:hover {
   transform: translateY(-4px);
 }
 
+.grid-container {
+  display: flex;
+  flex-wrap: wrap; /* ✅ 允许换行 */
+  gap: 16px; /* 可选：设置项目之间的间距 */
+}
+
+.grid-item {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.2s;
+}
+
 .tech-img {
-  width: 100%;
-  object-fit: contain; /* 保持图片比例 */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* 锁定纵横比，不拉伸 */
 }
 
 </style>    
