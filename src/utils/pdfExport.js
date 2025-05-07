@@ -22,8 +22,7 @@ export const exportToPDF = async (elementId, filename = 'report.pdf') => {
     const A4Width = 210 
     const A4Height = 297       
     const pdf = new jsPDF('p', 'mm', 'a4')
-    
-    // 智能分页算法（网页3/网页5）
+  
     const imgWidth = A4Width
     const imgHeight = (canvas.height * imgWidth) / canvas.width
     let position = 0
@@ -39,7 +38,6 @@ export const exportToPDF = async (elementId, filename = 'report.pdf') => {
 
     pdf.save(filename)
   } finally {
-    // 恢复隐藏元素（网页3）
     hiddenElements.forEach(el => el.style.display = '')
   }
 }

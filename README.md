@@ -27,3 +27,12 @@ md格式见exampe.md
 
 ```
 
+```mermaid
+graph LR
+  A[上传公司名称到company.md] --> B[[判断是否需要爬取公司信息]]
+  M[判断依据：是否已经存在公司的详细信息] --> B
+  B -->|是| C[启动python脚本]
+  C --> E[生成公司的md文档和公司logo]
+  B -->|否| D[存入公司信息到weight.json中，并初始化当前公司的权重为10]
+  D --> F[npm run build 并 部署到服务器]
+  E --> D

@@ -1,5 +1,5 @@
 名称:keras
-描述:keras
-成立时间:2020
-网站:https://github.com/fastai/fastai
+描述:Keras 是一个用 Python 编写的高级神经网络 API，旨在实现快速实验和简洁的代码设计。作为 TensorFlow 的官方高级 API，它支持卷积神经网络（CNN）、循环神经网络（RNN）及其混合架构，能够无缝集成到 TensorFlow 生态中。Keras 以易用性和模块化为核心设计理念，允许开发者通过简单的函数式接口或类式接口快速构建、训练和评估模型，显著降低了深度学习的入门门槛
+成立时间:2015
+网站:https://keras.io
 标签分类:AI框架;工具和库;开源基础设施;
