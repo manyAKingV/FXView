@@ -1,11 +1,9 @@
 <template>
     <div id="app">
-        <!-- 导航栏 -->
-        <a-layout-header>
-            <div class="logo">
-                <img src="@/assets/logo.png" alt="Company Logo">
-            </div>
-        </a-layout-header>
+        <div class="title">
+            <img src="@/assets/logo.png" alt="Company Logo" class="logo">
+        </div>
+        <img :src="`/static/photo/picture01.png`" alt="封面图" class="cover-img">
         <!-- 内容区域 -->
         <a-layout-content class="content-container">
             <div class="tech-layer">
@@ -87,6 +85,10 @@
             <p>成立时间：{{ popupData.time }}</p>
             <p>网站：<a :href="popupData.website" target="_blank">{{ popupData.website }}</a></p>
             <div>标签：{{ popupData.tags.join(', ') }}</div>
+        </div>
+
+        <div class="export-btn">
+            <img src="@/assets/logo.png" alt="Company Logo" class="logo02">
         </div>
     </div>
 </template>
@@ -205,32 +207,53 @@ export default {
     background-color: #3e3e3f;
 }
 
+.title {
+    background-color: #06072B;
+    height: 6vh;
+}
+
 .logo {
-    font-size: 24px;
-    font-weight: bold;
+    height: 60%;
+    object-fit: contain;
+    margin-left: 10%;
+    margin-top: 0.7%;
+}
+
+.logo02 {
+    width: 107px;
+    object-fit: contain;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+.cover-img {
+    width: 100%;
 }
 
 .content-container {
-    padding: 50px;
-    background-color: #f5f5f5;
+    background-image: url('/public/static/photo/picture02.png');
+    background-position: center; 
 }
 
 .tech-layer {
     display: flex;
     border: 2px solid #1890ff; /* Ant Design主题蓝色边框 */
     border-radius: 8px;
-    background: #f0f9ff; /* 浅蓝色背景 */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 阴影增强层次感 */
-    margin: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .section-title {
-  color: #1890ff;
-  margin-bottom: 16px;
-  font-size: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px;
+    color: #f5f7f9;
+    margin-bottom: 16px;
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    writing-mode: vertical-rl;
+    line-height: 1.5;
 }
 
 .ai-framework {
@@ -343,6 +366,11 @@ export default {
 
 .popup .close-btn:hover {
     transform: rotate(90deg);
+}
+
+.export-btn {
+    background-color: #262A36;
+    height: 20vh;
 }
 
 </style>    
