@@ -21,8 +21,12 @@ jobs:
           files: |
             public/**
       
-      - name: Output changed files
-        run: echo "${{ steps.changed-files.outputs.all_changed_files }}"
+      - name: Output changed content
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            git diff HEAD^ HEAD -- "$file"
+          done
 
       # 新增：Python脚本执行环节
       - name: Set up Python
