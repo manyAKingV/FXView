@@ -24,6 +24,9 @@ def json_to_txt(input_file, output_file):
         print(f"发生未知错误: {e}")
 
 if __name__ == "__main__":
-    input_json = "company.json"
-    output_txt = "a.txt"
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    # 构建 company.json 文件的路径
+    input_json = os.path.join(script_dir, 'company.json')
+    output_txt = os.path.join(script_dir, 'a.txt')
     json_to_txt(input_json, output_txt)
