@@ -14,6 +14,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Detect modified files
+        uses: tj-actions/changed-files@v45
+        id: changed-files
+        with:
+          files: |
+            public/**
+      
+      - name: Output changed files
+        run: echo "${{ steps.changed-files.outputs.all_changed_files }}"
+
       # 新增：Python脚本执行环节
       - name: Set up Python
         uses: actions/setup-python@v4
