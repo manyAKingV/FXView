@@ -22,7 +22,7 @@ jobs:
 
       - name: Run Pre-build Script
         run: |
-          python public/readJson.py
+          python ../../public/readJson.py
 
       # 2. 安装 Docker Buildx
       - name: Set up Docker Buildx
