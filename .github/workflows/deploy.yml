@@ -22,7 +22,10 @@ jobs:
 
       - name: Run Pre-build Script
         run: |
-          python ../../public/readJson.py
+          # 获取项目根目录绝对路径
+          ROOT_DIR="$GITHUB_WORKSPACE"
+          SCRIPT_PATH="$ROOT_DIR/public/readJson.py"
+          python "$SCRIPT_PATH"
 
       # 2. 安装 Docker Buildx
       - name: Set up Docker Buildx
