@@ -14,20 +14,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Detect modified files
-        uses: tj-actions/changed-files@v45
-        id: changed-files
-        with:
-          files: |
-            public/**
-      
-      - name: Output changed content
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            git diff HEAD^ HEAD -- "$file"
-          done
-
       # 新增：Python脚本执行环节
       - name: Set up Python
         uses: actions/setup-python@v4
