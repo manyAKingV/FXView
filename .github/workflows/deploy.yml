@@ -21,7 +21,7 @@ jobs:
           python-version: "3.10"
 
       - name: Run Pre-build Script
-        run: python public/readJson.py
+        run: python scrapy/readJson.py
 
       # 2. 安装 Docker Buildx
       - name: Set up Docker Buildx
