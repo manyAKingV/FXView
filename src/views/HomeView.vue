@@ -129,7 +129,7 @@ export default {
         // 获取公司信息
         getCompany() {
             // 使用 require.context 扫描 public/company 目录下的所有.md 文件
-            const mdContext = require.context('@/../public/company', false, /\.md$/);
+            const mdContext = require.context('@/../scrapy/company', false, /\.md$/);
             const allMDFiles = mdContext.keys().reduce((acc, filePath) => {
                 // 优化路径处理（兼容Windows/Linux）
                 const fileName = filePath
