@@ -8,12 +8,12 @@
                 <div class="section-title">应用层</div>
                 <div class="ai-framework">
                     <div class="ai-frameworks">
-                    <h3 class="sub-title">智能城市</h3>
-                    <div class="grid-container">
-                        <div class="grid-item" v-for="(company, index) in companies" :key="index" >
-                            <img :src="`/static/icon/${company.name}.png`" alt="智能城市" class="tech-img" @click="showCompanyInfo(company, $event)"/>
+                        <h3 class="sub-title">智能城市</h3>
+                        <div class="grid-container">
+                            <div class="grid-item" v-for="(company, index) in companies[0].list[0].list" :key="index" >
+                                <img :src="require(`@scrapy/company/应用层/智慧城市/${company.name}/${company.name}.png`)" alt="智能城市" class="tech-img" @click="showCompanyInfo(company, $event)"/>
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <div class="ai-frameworks">
                         <h3 class="sub-title">智能交通</h3>
@@ -82,7 +82,6 @@
             <p>{{ popupData.describe }}</p>
             <p>成立时间：{{ popupData.time }}</p>
             <p>网站：<a :href="popupData.website" target="_blank">{{ popupData.website }}</a></p>
-            <div>标签：{{ popupData.tags.join(', ') }}</div>
         </div>
 
     </div>
@@ -94,7 +93,34 @@ import { exportToPDF } from "@/utils/pdfExport";
 export default {
     data() {
         return {
-            companies:[],
+            companies:[
+                {
+                    name: '应用层',
+                    list:[
+                        {
+                            name: '智慧城市',
+                            list: []
+                        },
+                        {
+                            name: '智慧家居',
+                            list: []
+                        }
+                    ]
+                },
+                // {
+                //     name: '服务层',
+                //     list:[
+                //         {
+                //             name: '智慧城市',
+                //             list: []
+                //         },
+                //         {
+                //             name: '智慧家居',
+                //             list: []
+                //         }
+                //     ]
+                // }
+            ],
             showPopup: false,
             popupData: {},
             popupPosition: { x: 0, y: 0 }
@@ -128,70 +154,61 @@ export default {
         },
         // 获取公司信息
         getCompany() {
-            // 使用 require.context 扫描 public/company 目录下的所有.md 文件
-            const mdContext = require.context('@/../scrapy/company', false, /\.md$/);
-            const allMDFiles = mdContext.keys().reduce((acc, filePath) => {
-                // 优化路径处理（兼容Windows/Linux）
-                const fileName = filePath
-                .replace(/^\.\//, '')
-                .replace(/\.md$/, '')
-                .split('/')
-                .pop();
-                // 移除.default获取方式
-                const content = mdContext(filePath); 
-                acc[fileName] = content;
-                return acc;
-            }, {});
+            const context = require.context('@/../scrapy/company/', true, /\.md$/);
             
-            const result = Object.values(allMDFiles).map(content => {
-                const parseMD = (content) => {
-                    if (!content) {
-                        return {
-                            name: '',
-                            describe: '',
-                            time: '',
-                            website: null,
-                            tags: []
-                        };
-                    }
-
-                    const cleanContent = content
-                        .replace(/<\/?p>/g, '')
-                        .replace(/<br\s*\/?>/g, '\n')
-                        .replace(/<\/?a[^>]*>/g, '');
-
-                    // TODO 处理描述、名称、网站、标签为空导致的问题
-                    const patterns = {
-                        name: /名称:\s*([^\n]+)/im,
-                        describe: /^描述[：:]\s*((?:.|\n)+?)(?=\n\S+[：:]|$)/im,
-                        time: /^成立时间[：:]\s*(\d{4}?)/im,
-                        website: /网站:\s*([^\n]+)/i,
-                        tags: /标签分类:\s*([^\n]+)/i
-                    };
-                    
-                    const result = {};
-                    for (const key in patterns) {
-                        const match = cleanContent.match(patterns[key]);
-                        if (key === 'tags') {
-                            result[key] = (match?.[1] || '').split(';').map(tag => tag.trim()).filter(Boolean);
-                        } else {
-                            result[key] = (match?.[1] || '').trim();
-                        }
-                    }
-
-                    return result;
-                };
-                const x = parseMD(content)
-                return x
+            this.companies.forEach(item => {
+                item.list.forEach(service => {
+                    service.list = context.keys()
+                        .filter(filePath => {
+                            const parts = filePath.split('/');
+                            return parts[1] === item.name && parts[2] === service.name;
+                        })
+                        .map(filePath => {
+                            const mdModule = context(filePath);
+                            const content = mdModule.default || mdModule;
+                            return parseMD(content);
+                        });
+                });
             });
-            // todo 将读取的内容正常的展示到第一栏中
+            console.log("结果",this.companies);
             
-            this.companies = result;
-            console.log("result",this.companies);
-        },
+        }
         
     }
 };
+// 处理md文件
+function parseMD(content) {
+    if (!content) {
+        return {
+            name: '',
+            describe: '',
+            time: '',
+            website: ''
+        };
+    }
+    const cleanContent = content
+        .replace(/<\/?p>/g, '')
+        .replace(/<br\s*\/?>/g, '\n')
+        .replace(/<\/?a[^>]*>/g, '');
+    const patterns = {
+        name: /名称:\s*([^\n]+)/im,
+        describe: /^描述[：:]\s*((?:.|\n)+?)(?=\n\S+[：:]|$)/im,
+        time: /^成立时间[：:]\s*(\d{4}?)/im,
+        website: /^网站[：:]\s*([^\n]+)/i
+    };
+    
+    const result = {};
+    for (const key in patterns) {
+        const match = cleanContent.match(patterns[key]);
+        if (key === 'tags') {
+            result[key] = (match?.[1] || '').split(';').map(tag => tag.trim()).filter(Boolean);
+        } else {
+            result[key] = (match?.[1] || '').trim();
+        }
+    }
+
+    return result;
+}
 </script>
 
 <style scoped>
