@@ -11,7 +11,7 @@
                         <h3 class="sub-title">智能城市</h3>
                         <div class="grid-container">
                             <div class="grid-item" v-for="(company, index) in companies[0].list[0].list" :key="index" >
-                                <img :src="require(`@scrapy/company/应用层/智慧城市/${company.name}/${company.name}.png`)" alt="智能城市" class="tech-img" @click="showCompanyInfo(company, $event)"/>
+                                <img :src="require(`@scrapy/company/应用层/智慧城市/${company.name}/${company.name}.svg`)" alt="智能城市" class="tech-img" @click="showCompanyInfo(company, $event)"/>
                             </div>
                         </div>
                     </div>
@@ -314,8 +314,7 @@ function parseMD(content) {
 }
 
 .tech-img {
-  max-width: 100%;
-  max-height: 100%;
+  height: 40px;
   object-fit: contain; /* 锁定纵横比，不拉伸 */
 }
 .popup {
