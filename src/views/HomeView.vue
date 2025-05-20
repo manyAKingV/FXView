@@ -3,8 +3,6 @@
         <div class="title">
             <img src="@/assets/logo.png" alt="Company Logo" class="logo">
         </div>
-        <img :src="`/static/photo/picture01.png`" alt="封面图" class="cover-img">
-        <!-- 内容区域 -->
         <a-layout-content class="content-container">
             <div class="tech-layer">
                 <div class="section-title">应用层</div>
@@ -87,9 +85,6 @@
             <div>标签：{{ popupData.tags.join(', ') }}</div>
         </div>
 
-        <div class="export-btn">
-            <img src="@/assets/logo.png" alt="Company Logo" class="logo02">
-        </div>
     </div>
 </template>
   
