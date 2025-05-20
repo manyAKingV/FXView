@@ -13,8 +13,6 @@ function parseMD(content) {
         .replace(/<br\s*\/?>/g, '\n')
         .replace(/<\/?a[^>]*>/g, '');
     
-    console.log(cleanContent);
-    
     const patterns = {
         name: /名称[:：]\s*([^\n]+)/im,
         describe: /描述[:：]\s*((?:.|\n)+?)(?=\n\S+[:：]|$)/im,

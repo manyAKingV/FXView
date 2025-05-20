@@ -171,8 +171,6 @@ export default {
                         });
                 });
             });
-            console.log("结果",this.companies);
-            
         }
         
     }
