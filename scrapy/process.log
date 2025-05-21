@@ -2778,3 +2778,27 @@ AttributeError: 'ExecutionEngine' object has no attribute 'downloader'
 [2025-05-20 09:49:48] 成功更新: 腾讯
 [2025-05-20 09:49:56] 成功更新: 华为
 [2025-05-20 09:50:06] 成功更新: 通义千问
+[2025-05-20 17:40:20] 爬虫异常: 通义千问 - [Errno 2] No such file or directory: PosixPath('/Users/suyuchen/Product/FXView/scrapy/.venv/bin/scrapy')
+[2025-05-20 17:40:20] 更新失败: 通义千问
+[2025-05-20 17:40:59] 爬虫异常: 通义千问 - [Errno 2] No such file or directory: PosixPath('/Users/suyuchen/Product/FXView/scrapy/.venv/bin/scrapy')
+[2025-05-20 17:40:59] 更新失败: 通义千问
+[2025-05-20 17:44:55] 爬虫失败: 通义千问
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/suyuchen/Product/FXView/scrapy/crawl': [Errno 2] No such file or directory
+
+[2025-05-20 17:44:55] 更新失败: 通义千问
+[2025-05-20 17:45:20] 爬虫异常: 通义千问 - [Errno 2] No such file or directory: 'python'
+[2025-05-20 17:45:20] 更新失败: 通义千问
+[2025-05-20 17:45:54] 爬虫异常: 通义千问 - [Errno 2] No such file or directory: 'python'
+[2025-05-20 17:45:54] 更新失败: 通义千问
+[2025-05-20 17:50:54] 系统异常: 通义千问 - [Errno 13] Permission denied: 'scrapy'
+[2025-05-20 17:50:54] 更新失败: 通义千问
+[2025-05-20 17:58:45] 系统异常: 通义千问 - [Errno 13] Permission denied: 'scrapy'
+[2025-05-20 17:58:45] 更新失败: 通义千问
+[2025-05-21 08:59:23] 系统异常: 通义千问 - [Errno 13] Permission denied: 'scrapy'
+[2025-05-21 08:59:23] 更新失败: 通义千问
+[2025-05-21 09:09:40] 系统异常: 通义千问 - [Errno 13] Permission denied: 'scrapy'
+[2025-05-21 09:09:40] 更新失败: 通义千问
+[2025-05-21 09:39:28] 成功更新: 通义千问
+[2025-05-21 09:43:45] 成功更新: 通义千问
+[2025-05-21 09:50:49] 成功更新: 通义千问
+[2025-05-21 10:28:41] 成功更新: 通义千问

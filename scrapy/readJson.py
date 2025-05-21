@@ -1,4 +1,3 @@
-# main.py
 import json
 from pathlib import Path
 from datetime import datetime
@@ -16,7 +15,6 @@ LOG_FILE = BASE_DIR / "process.log"
 def generate_markdown(item: dict) -> str:
     """生成Markdown文件内容"""
     return f"""
-
 名称: {item['name']}
 描述: {item['description']}
 成立时间: {item['creation_time']}
@@ -84,43 +82,47 @@ def process_company_data(company_dir: Path, data: dict):
     except Exception as e:
         log(f"文件生成失败 {company_dir.name}: {str(e)}")
         return False
-
 def fetch_company_data(company_dir: Path) -> bool:
     """执行爬虫任务"""
     company_name = company_dir.name
+    scrapy_project_path = BASE_DIR.parent / "scrapy"  
+    
     try:
-        venv_path = BASE_DIR.parent / "scrapy/.venv/bin/scrapy"  # 根据实际venv路径调整
         result = subprocess.run(
             [
-                venv_path,
+                "scrapy", 
                 "crawl",
-                "company_spider",
+                "company_spider",  
                 "-a",
                 f"company_name={company_name}",
                 "-o",
-                "temp.json"
+                "temp.json",
+                "--loglevel=INFO"  # 新增日志级别参数[7](@ref)
             ],
             capture_output=True,
             text=True,
-            cwd=BASE_DIR.parent / "scrapy",
+            cwd=scrapy_project_path,  # 确保工作目录正确[3,8](@ref)
             timeout=300
         )
         
+        # 结果处理逻辑保持原有不变
         if result.returncode == 0:
-            # 解析临时数据
-            temp_file = BASE_DIR.parent / "scrapy/temp.json"
+            temp_file = scrapy_project_path / "temp.json"
             with open(temp_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)[0]
             
-            # 处理数据并生成文件
             success = process_company_data(company_dir, data)
             temp_file.unlink()
             return success
         else:
-            log(f"爬虫失败: {company_name}\n{result.stderr}")
+            error_msg = f"爬虫失败: {company_name}\nSTDERR: {result.stderr}\nSTDOUT: {result.stdout}"
+            log(error_msg)
             return False
+    except subprocess.TimeoutExpired:
+        log(f"爬虫超时: {company_name}（超过5分钟）")
+        return False
     except Exception as e:
-        log(f"爬虫异常: {company_name} - {str(e)}")
+        log(f"系统异常: {company_name} - {str(e)}")
         return False
 
 def log(message: str):
@@ -147,6 +149,6 @@ def main():
             log(f"成功更新: {company_dir.name}")
         else:
             log(f"更新失败: {company_dir.name}")
-
+            
 if __name__ == "__main__":
     main()
