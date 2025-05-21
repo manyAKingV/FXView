@@ -42,7 +42,6 @@ class CompanyInfoSpider(scrapy.Spider):
             self.logger.warning(f"未找到搜索结果：{self.company_name}")
 
     def parse_company_page(self, response):
-        sh
         website = response.meta["website"]
 
         description = response.xpath('//meta[@name="description"]/@content').get()
