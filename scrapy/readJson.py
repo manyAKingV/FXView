@@ -97,11 +97,11 @@ def fetch_company_data(company_dir: Path) -> bool:
                 f"company_name={company_name}",
                 "-o",
                 "temp.json",
-                "--loglevel=INFO"  # 新增日志级别参数[7](@ref)
+                "--loglevel=INFO"
             ],
             capture_output=True,
             text=True,
-            cwd=scrapy_project_path,  # 确保工作目录正确[3,8](@ref)
+            cwd=scrapy_project_path,
             timeout=300
         )
         
