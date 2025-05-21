@@ -120,7 +120,7 @@ export default {
                 //             list: []
                 //         }
                 //     ]
-                // }
+                // },
             ],
             showPopup: false,
             popupData: {},
