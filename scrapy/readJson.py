@@ -7,6 +7,8 @@ import requests
 from PIL import Image
 from io import BytesIO
 import base64
+import os
+
 
 BASE_DIR = Path(__file__).parent.resolve()
 COMPANY_BASE = BASE_DIR / "company"  
@@ -64,6 +66,42 @@ def process_logo(logo_url: str, company_dir: Path):
         log(f"LOGO处理失败 {company_dir.name}: {str(e)}")
         return False
 
+def convert_images_to_svg(company_dir: Path):
+    """将公司目录中的所有图片转换为SVG格式"""
+    image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp']
+    converted_count = 0
+    
+    for file in company_dir.iterdir():
+        if file.is_file() and file.suffix.lower() in image_extensions:
+            try:
+                # 打开图片
+                img = Image.open(file)
+                
+                # 创建Base64编码的SVG
+                with open(file, 'rb') as f:
+                    img_data = f.read()
+                
+                svg_content = f'''<svg xmlns="http://www.w3.org/2000/svg" 
+                                  width="{img.width}" 
+                                  height="{img.height}">
+                    <image href="data:image/{file.suffix[1:]};base64,{base64.b64encode(img_data).decode('utf-8')}"/>
+                </svg>'''
+                
+                # 生成SVG文件名（保持原文件名，替换扩展名）
+                svg_filename = file.with_suffix('.svg').name
+                svg_path = company_dir / svg_filename
+                
+                # 保存SVG文件
+                with open(svg_path, 'w', encoding='utf-8') as f:
+                    f.write(svg_content)
+                
+                converted_count += 1
+                log(f"成功转换图片: {file.name} -> {svg_filename}")
+            except Exception as e:
+                log(f"图片转换失败: {file.name} - {str(e)}")
+    
+    return converted_count
+
 def process_company_data(company_dir: Path, data: dict):
     """处理爬取数据并生成文件"""
     try:
@@ -82,6 +120,7 @@ def process_company_data(company_dir: Path, data: dict):
     except Exception as e:
         log(f"文件生成失败 {company_dir.name}: {str(e)}")
         return False
+
 def fetch_company_data(company_dir: Path) -> bool:
     """执行爬虫任务"""
     company_name = company_dir.name
@@ -136,7 +175,17 @@ def main():
     # 获取所有公司目录
     all_company_dirs = get_all_company_dirs()
     
-    # 筛选需要处理的目录
+    print(f"发现 {len(all_company_dirs)} 个公司目录")
+    
+    # 步骤1：先转换所有图片为SVG
+    total_converted = 0
+    for company_dir in all_company_dirs:
+        converted_count = convert_images_to_svg(company_dir)
+        total_converted += converted_count
+    
+    print(f"已完成图片转换，共转换 {total_converted} 个图片文件")
+    
+    # 步骤2：筛选需要处理的目录
     process_list = [d for d in all_company_dirs if not is_company_valid(d)]
     
     print(f"总公司目录数: {len(all_company_dirs)}")
