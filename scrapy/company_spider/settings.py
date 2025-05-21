@@ -16,7 +16,7 @@ CONCURRENT_REQUESTS = 4  # 降低并发避免封禁
 AUTOTHROTTLE_ENABLED = True  # 新增自动限速
 
 # 文件存储配置
-FILES_STORE = '../../company'  # 根据项目结构调整路径
+FILES_STORE = '../../company' 
 IMAGES_STORE = '../../company'
 
 # 数据管道（重要调整）

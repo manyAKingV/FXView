@@ -85,7 +85,7 @@ def process_company_data(company_dir: Path, data: dict):
 def fetch_company_data(company_dir: Path) -> bool:
     """执行爬虫任务"""
     company_name = company_dir.name
-    scrapy_project_path = BASE_DIR.parent / "scrapy"  
+    scrapy_project_path = BASE_DIR.parent / "scrapy"
     
     try:
         result = subprocess.run(
@@ -97,14 +97,14 @@ def fetch_company_data(company_dir: Path) -> bool:
                 f"company_name={company_name}",
                 "-o",
                 "temp.json",
-                "--loglevel=INFO"  # 新增日志级别参数[7](@ref)
+                "--loglevel=INFO"  
             ],
             capture_output=True,
             text=True,
-            cwd=scrapy_project_path,  # 确保工作目录正确[3,8](@ref)
+            cwd=scrapy_project_path, 
             timeout=300
         )
-        
+        print(f"{result}")
         # 结果处理逻辑保持原有不变
         if result.returncode == 0:
             temp_file = scrapy_project_path / "temp.json"

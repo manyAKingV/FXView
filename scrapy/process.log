@@ -2802,3 +2802,54 @@ AttributeError: 'ExecutionEngine' object has no attribute 'downloader'
 [2025-05-21 09:43:45] 成功更新: 通义千问
 [2025-05-21 09:50:49] 成功更新: 通义千问
 [2025-05-21 10:28:41] 成功更新: 通义千问
+[2025-05-21 11:29:43] 系统异常: 阿里云 - list index out of range
+[2025-05-21 11:29:43] 更新失败: 阿里云
+[2025-05-21 11:31:02] 系统异常: 腾讯元宝 - Extra data: line 3 column 2 (char 4)
+[2025-05-21 11:31:02] 更新失败: 腾讯元宝
+[2025-05-21 11:33:18] 系统异常: 腾讯元宝 - Extra data: line 3 column 2 (char 4)
+[2025-05-21 11:33:18] 更新失败: 腾讯元宝
+[2025-05-21 11:35:11] 系统异常: 通义千问 - Extra data: line 3 column 2 (char 4)
+[2025-05-21 11:35:11] 更新失败: 通义千问
+[2025-05-21 11:38:22] 系统异常: 通义千问 - Extra data: line 3 column 2 (char 4)
+[2025-05-21 11:38:22] 更新失败: 通义千问
+[2025-05-21 11:40:01] 系统异常: 通义千问 - Extra data: line 3 column 2 (char 4)
+[2025-05-21 11:40:01] 更新失败: 通义千问
+[2025-05-21 11:41:30] 爬虫失败: 通义千问
+STDERR: 
+STDOUT: Scrapy 2.13.0 - no active project
+
+The crawl command is not available from this location.
+These commands are only available from within a project: check, crawl, edit, list, parse.
+
+Use "scrapy" to see available commands
+
+[2025-05-21 11:41:30] 更新失败: 通义千问
+[2025-05-21 11:50:43] 爬虫失败: 通义千问
+STDERR: 
+STDOUT: Scrapy 2.13.0 - no active project
+
+The crawl command is not available from this location.
+These commands are only available from within a project: check, crawl, edit, list, parse.
+
+Use "scrapy" to see available commands
+
+[2025-05-21 11:50:43] 更新失败: 通义千问
+[2025-05-21 11:59:13] 爬虫失败: 通义千问
+STDERR: 
+STDOUT: Scrapy 2.13.0 - no active project
+
+The crawl command is not available from this location.
+These commands are only available from within a project: check, crawl, edit, list, parse.
+
+Use "scrapy" to see available commands
+
+[2025-05-21 11:59:13] 更新失败: 通义千问
+[2025-05-21 12:01:00] 系统异常: 通义千问 - Extra data: line 3 column 2 (char 4)
+[2025-05-21 12:01:00] 更新失败: 通义千问
+[2025-05-21 14:18:23] 系统异常: 通义千问 - Extra data: line 3 column 2 (char 4)
+[2025-05-21 14:18:23] 更新失败: 通义千问
+[2025-05-21 14:22:48] 成功更新: 通义千问
+[2025-05-21 14:24:01] 系统异常: 阿里云 - list index out of range
+[2025-05-21 14:24:01] 更新失败: 阿里云
+[2025-05-21 14:24:51] 系统异常: 京东 - Extra data: line 3 column 2 (char 4)
+[2025-05-21 14:24:51] 更新失败: 京东
