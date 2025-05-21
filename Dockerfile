@@ -1,5 +1,5 @@
 # 阶段1：构建环境
-FROM node:18-alpine AS builder
+FROM registry.cn-beijing.aliyuncs.com/acs/node:18-alpine AS builder
 
 # 工作目录
 WORKDIR /app
