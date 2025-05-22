@@ -2874,3 +2874,13 @@ Use "scrapy" to see available commands
 [2025-05-21 17:29:47] 更新失败: dify
 [2025-05-21 17:29:56] 系统异常: 京东 - Extra data: line 3 column 2 (char 4)
 [2025-05-21 17:29:56] 更新失败: 京东
+[2025-05-22 09:28:56] 成功转换图片: 腾讯.png -> 腾讯.svg
+[2025-05-22 09:28:56] 成功转换图片: 阿里巴巴.png -> 阿里巴巴.svg
+[2025-05-22 09:28:56] 图片转换失败: 小米.ico - 'set' object has no attribute 'index'
+[2025-05-22 09:29:06] 系统异常: dify - Extra data: line 3 column 2 (char 4)
+[2025-05-22 09:29:06] 更新失败: dify
+[2025-05-22 09:29:14] 系统异常: 京东 - Extra data: line 3 column 2 (char 4)
+[2025-05-22 09:29:14] 更新失败: 京东
+[2025-05-22 09:30:14] 成功转换图片: 腾讯.png -> 腾讯.svg
+[2025-05-22 09:30:14] 成功转换图片: 阿里巴巴.png -> 阿里巴巴.svg
+[2025-05-22 09:30:14] 图片转换失败: 小米.ico - 'set' object has no attribute 'index'

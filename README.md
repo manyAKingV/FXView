@@ -13,8 +13,16 @@ npm run dev
 ```
 npm run build
 ```
-
-要求传输md和png格式的图片，图片有尺寸要求
+在项目根目录**scrapy/company** 下放入以公司名称命名的文件夹 位置实例如下
+└── scrapy/       
+    └── company/
+        └── 公司名称1/       
+            ├── 公司名称1.md
+            ├── 公司名称1.png
+        └── 公司名称2/       
+            ├── 公司名称2.md
+            ├── 公司名称2.png  
+要求传输公司信息md文件 和公司logo png格式或者jpg格式的，图片有尺寸要求
 md文档有书写要求，且图片名称和md名称相同
 md格式见exampe.md
 
@@ -29,7 +37,7 @@ md格式见exampe.md
 
 ```mermaid
 graph LR
-  A[上传公司名称到company.md] --> B[[判断是否需要爬取公司信息]]
+  A[上传公司信息到在company下] --> B[[判断是否需要爬取公司信息]]
   M[判断依据：是否已经存在公司的详细信息] --> B
   B -->|是| C[启动python脚本]
   C --> E[生成公司的md文档和公司logo]
