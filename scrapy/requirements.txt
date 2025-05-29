@@ -1,7 +1,0 @@
-Scrapy==2.11.0
-Twisted
-pyOpenSSL==23.2.0
-service-identity==21.1.0
-cssselect==1.2.0
-pillow==11.2.1
-requests>=2.31.0

@@ -1,0 +1,17 @@
+foundation: OpenAPI
+url: https://oai.landscape2.io
+categories:
+  - name: OpenAPI Initiative Members
+    subcategories:
+      - General
+      - Associate
+colors:
+  color1: rgba(87, 128, 0, 1)
+  color2: rgba(22, 128, 115, 1)
+  color3: rgba(76, 91, 49, 1)
+  color4: rgba(87, 128, 0, 0.9)
+  color5: rgba(94, 93, 95, 1)
+  color6: rgba(87, 128, 0, 1)
+  color7: rgba(252, 255, 246, 1)
+members_category: OpenAPI Initiative Members
+screenshot_width: 1500
