@@ -6,16 +6,6 @@ landscape:
         name: General
         items:
           - item:
-            name: 通义千问
-            description: >-
-              通义千问是一个通情、达义的国产AI模型，可以帮你解答问题、文档阅读、联网搜索并写作总结
-            homepage_url: https://www.tongyi.com/
-            logo: qianwen.svg
-            extra:
-              linkedin_url: https://linkedin.com/company/techflow
-            organization:
-              name: TechFlow Inc.
-          - item:
             name: 42Crunch
             description: less than 10 employees... OAI $500 + nonLF member fee or $5,000 LF Silver membership.  $1,000 total or $5,500 total..
             homepage_url: https://42crunch.com/
