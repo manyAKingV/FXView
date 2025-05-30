@@ -1,17 +1,69 @@
-foundation: OpenAPI
-url: https://oai.landscape2.io
-categories:
-  - name: OpenAPI Initiative Members
-    subcategories:
-      - General
-      - Associate
+foundation: fusionx
+url: https://www.fusionx.net
+
 colors:
-  color1: rgba(87, 128, 0, 1)
-  color2: rgba(22, 128, 115, 1)
-  color3: rgba(76, 91, 49, 1)
-  color4: rgba(87, 128, 0, 0.9)
-  color5: rgba(94, 93, 95, 1)
-  color6: rgba(87, 128, 0, 1)
-  color7: rgba(252, 255, 246, 1)
-members_category: OpenAPI Initiative Members
+  color1: rgba(32, 145, 208, 1)  # 主蓝色
+  color2: rgba(5, 85, 182, 1)     # 深蓝色
+  color3: rgba(32, 145, 208, 1)   # 同主蓝
+  color4: rgba(32, 145, 208, 0.9) # 半透明主蓝
+  color5: rgba(32, 145, 208, 0.85)
+  color6: rgba(52, 198, 243, 0.85) # 青蓝色
+  color7: rgba(232, 244, 250, 1)
+footer: # 页脚
+  links:
+    github: https://github.com/openfusionx/FXView
+    homepage: https://www.fusionx.net
+  logo: https://fxfiles.oss-cn-beijing.aliyuncs.com/openfxview/white_logo.svg
+header:
+  links:
+    github: https://github.com/openfusionx/FXView
+  logo: https://fxfiles.oss-cn-beijing.aliyuncs.com/openfxview/yunwanghu.svg
 screenshot_width: 1500
+
+categories:
+  - name: 会员
+    subcategories:
+      - 普通公司
+      - 知名大厂
+
+featured_items:
+  - field: maturity
+    options:
+      - value: graduated
+        order: 1
+        label: Adopted
+      - value: incubating
+        order: 2
+        label: Incubation
+      - value: sandbox
+        order: 3
+        label: Sandbox
+      - value: working-group
+        order: 4
+        label: Working Group
+      - value: long-term-working-group
+        order: 5
+        label: Long Term Working Group
+  - field: subcategory
+    options:
+      - value: 普通公司
+      - value: 知名大厂
+
+grid_items_size: medium
+
+groups:
+  - name: Open Source Projects
+    categories:
+      - Imaging and Color
+      - Assets and Workflow
+      - Rendering and Queueing
+      - Math and Simulation
+      - Other
+  - name: ASWF Members
+    categories:
+      - 会员
+  - name: ASWF Projects
+    categories:
+      - ASWF Projects
+
+members_category: 会员
