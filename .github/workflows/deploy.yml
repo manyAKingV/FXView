@@ -30,6 +30,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  # 服务器私钥
           REMOTE_HOST: ${{ secrets.HOST }}                 # 服务器 IP
           REMOTE_USER: ${{ secrets.USER }}                 # 登录用户（如 root）
-          TARGET: /var/www/fxview/                         # 服务器目标目录
+          TARGET: /var/www/fxview/build                         # 服务器目标目录
           SOURCE: "build/*"                                # 构建产物路径
           ARGS: "-avz --delete"                            # 增量同步并清理旧文件
