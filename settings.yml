@@ -20,50 +20,23 @@ header:
   logo: https://fxfiles.oss-cn-beijing.aliyuncs.com/openfxview/yunwanghu.svg
 screenshot_width: 1500
 
-categories:
-  - name: 会员
-    subcategories:
-      - 普通公司
-      - 知名大厂
-
 featured_items:
   - field: maturity
     options:
-      - value: graduated
+      - value: level1
         order: 1
-        label: Adopted
-      - value: incubating
+        label: level1
+      - value: level2
         order: 2
-        label: Incubation
-      - value: sandbox
-        order: 3
-        label: Sandbox
-      - value: working-group
-        order: 4
-        label: Working Group
-      - value: long-term-working-group
-        order: 5
-        label: Long Term Working Group
-  - field: subcategory
-    options:
-      - value: 普通公司
-      - value: 知名大厂
+        label: level2
+
 
 grid_items_size: medium
 
 groups:
-  - name: Open Source Projects
+  - name: Open公司
     categories:
-      - Imaging and Color
-      - Assets and Workflow
-      - Rendering and Queueing
-      - Math and Simulation
-      - Other
-  - name: ASWF Members
-    categories:
-      - 会员
-  - name: ASWF Projects
-    categories:
-      - ASWF Projects
+      - Application应用层
+
 
 members_category: 会员
