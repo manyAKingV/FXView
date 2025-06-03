@@ -45,6 +45,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/landscape2:${{ github.sha }}
             ${{ secrets.DOCKERHUB_USERNAME }}/landscape2:latest
           build-args: |
             BUILD_DIR=build
