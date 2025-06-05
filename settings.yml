@@ -29,6 +29,9 @@ featured_items:
       - value: level2
         order: 2
         label: level2
+      - value: level3
+        order: 3
+        label: level3
 
 
 grid_items_size: medium

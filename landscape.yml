@@ -3,33 +3,84 @@ landscape:
     name: Application应用层
     subcategories:
       - subcategory:
-        name: 智慧城市
+        name: 智慧金融
         items:
           - item:
-            name: 'ACES: Academy Color Encoding System'
-            homepage_url: https://www.oscars.org/science-technology/sci-tech-projects/aces
-            repo_url: https://github.com/ampas/aces-dev
-            logo: aces.svg
-            crunchbase: https://www.crunchbase.com/organization/the-academy-of-motion-picture-arts-and-sciences
+            name: 百度在线网络技术 (北京) 有限公司
+            homepage_url: https://www.baidu.com
+            logo: 百度.svg
+            description: >-
+              科技公司成立于 2000-01-18  
             project: level1
           - item:
-            name: Color Transformation Language (CTL)
-            homepage_url: https://www.oscars.org/science-technology/sci-tech-projects/color-transformation-language
-            repo_url: https://github.com/ampas/CTL
-            logo: ctl.svg
-            crunchbase: https://www.crunchbase.com/organization/the-academy-of-motion-picture-arts-and-sciences
+            name: 京东科技集团
+            homepage_url: https://www.jdt.com.cn/
+            logo: 京东科技.svg
+            description: >-
+              科技公司成立于 2012-09  
+            project: level1
           - item:
-            name: Colour
-            homepage_url: https://www.colour-science.org/
-            repo_url: https://github.com/colour-science/colour
-            logo: colour.svg
-            crunchbase: https://www.crunchbase.com/organization/colour-science
+            name: 蚂蚁科技集团股份有限公司
+            homepage_url: https://www.antgroup.com/
+            logo: 蚂蚁.svg
+            description: >-
+              科技公司成立于 2000-10-19  
+            project: level1
           - item:
-            name: PhysLight
-            homepage_url: https://github.com/wetadigital/physlight
-            repo_url: https://github.com/wetadigital/physlight
-            logo: PhysLight.svg
-            crunchbase: https://www.crunchbase.com/organization/weta-digital
+            name: 腾讯云计算（北京）有限责任公司
+            homepage_url: https://cloud.tencent.com/
+            logo: 腾讯云.svg
+            description: >-
+              科技公司成立于 2010-10-21  
+            project: level1
+          - item:
+            name: 科大讯飞股份有限公司
+            homepage_url: https://www.iflytek.com
+            logo: 科大讯飞.svg
+            description: >-
+              科技公司成立于 1999-12-30  
+            project: level2
+          - item:
+            name: 恒生电子股份有限公司
+            homepage_url: https://www.hundsun.com
+            logo: 恒生电子.svg
+            description: >-
+              科技公司成立于 2000-12-13  
+            project: level2
+          - item:
+            name: 百融云创科技股份有限公司
+            homepage_url: https://www.brgroup.com
+            logo: 百融.svg
+            description: >-
+              科技公司成立于 2014-03-19  
+            project: level3
+          - item:
+            name: 上海冰鉴信息科技有限公司
+            homepage_url: https://www.icekredit.com
+            logo: 冰鉴.svg
+            description: >-
+              科技公司成立于 2015-06-04  
+            project: level3
+          - item:
+            name: 第四范式 (北京) 技术有限公司
+            homepage_url: https://www.4paradigm.com
+            logo: 第四范式.svg
+            description: >-
+              科技公司成立于 2015-05-12  
+            project: level3
+          - item:
+            name: 同盾科技有限公司
+            homepage_url: https://www.tongdun.cn
+            logo: 同盾科技.svg
+            description: >-
+              科技公司成立于 2012-10-10  
+            project: level3
+          - item:
+            name: 达而观信息科技（上海）有限公司
+            homepage_url: https://www.datagrand.com/
+            logo: 达观.svg
+            description: >-
+              科技公司成立于 2015-05-28
       - subcategory:
         name: 智能交通
         items:
