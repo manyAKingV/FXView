@@ -10,7 +10,7 @@ def convert_images_to_svg(input_dir: Path, output_dir: Path):
     :param output_dir: 保存SVG文件的目标目录
     :return: 转换的文件数量
     """
-    image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp']
+    image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.jpeg', '.webp']
     converted_count = 0
 
     # 确保输出目录存在
