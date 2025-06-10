@@ -1,236 +1,60 @@
 landscape:
-  - category:
-    name: Application应用层
+- category:
+    name: 应用层
     subcategories:
-      - subcategory:
-        name: 智慧金融
-        items:
-          - item:
-            name: bd百度在线网络技术 (北京) 有限公司
-            homepage_url: https://www.baidu.com
-            logo: 百度.svg
-            description: >-
-              科技公司成立于 2000-01-18  
-            project: level1
-          - item:
-            name: jd京东科技集团
-            homepage_url: https://www.jdt.com.cn/
-            logo: 京东科技.svg
-            description: >-
-              科技公司成立于 2012-09  
-            project: level1
-          - item:
-            name: my蚂蚁科技集团股份有限公司
-            homepage_url: https://www.antgroup.com/
-            logo: 蚂蚁.svg
-            description: >-
-              科技公司成立于 2000-10-19  
-            project: level1
-          - item:
-            name: tx腾讯云计算（北京）有限责任公司
-            homepage_url: https://cloud.tencent.com/
-            logo: 腾讯云.svg
-            description: >-
-              科技公司成立于 2010-10-21  
-            project: level1
-          - item:
-            name: kd科大讯飞股份有限公司
-            homepage_url: https://www.iflytek.com
-            logo: 科大讯飞.svg
-            description: >-
-              科技公司成立于 1999-12-30  
-            project: level2
-          - item:
-            name: hs恒生电子股份有限公司
-            homepage_url: https://www.hundsun.com
-            logo: 恒生电子.svg
-            description: >-
-              科技公司成立于 2000-12-13  
-            project: level2
-          - item:
-            name: br百融云创科技股份有限公司
-            homepage_url: https://www.brgroup.com
-            logo: 百融.svg
-            description: >-
-              科技公司成立于 2014-03-19  
-            project: level3
-          - item:
-            name: sh上海冰鉴信息科技有限公司
-            homepage_url: https://www.icekredit.com
-            logo: 冰鉴.svg
-            description: >-
-              科技公司成立于 2015-06-04  
-            project: level3
-          - item:
-            name: ds第四范式 (北京) 技术有限公司
-            homepage_url: https://www.4paradigm.com
-            logo: 第四范式.svg
-            description: >-
-              科技公司成立于 2015-05-12  
-            project: level3
-          - item:
-            name: td同盾科技有限公司
-            homepage_url: https://www.tongdun.cn
-            logo: 同盾科技.svg
-            description: >-
-              科技公司成立于 2012-10-10  
-            project: level3
-          - item:
-            name: dg达而观信息科技（上海）有限公司
-            homepage_url: https://www.datagrand.com/
-            logo: 达观.svg
-            description: >-
-              科技公司成立于 2015-05-28
-      - subcategory:
-        name: 智慧教育
-        items:
-          - item:
-            name: kdxf科大讯飞教育
-            homepage_url: https://www.iflytek.com
-            logo: 讯飞教育.svg
-            description: >-
-              以“人工智能助力教育，因材施教成就梦想”为理念，围绕“因材施教”提供了覆盖教、学、考、评、管的教育全场景解决方案。成立于2004年。
-            project: level1 
-          - item:
-            name: yfd猿辅导
-            homepage_url: https://www.yuanfudao.com
-            logo: 猿辅导.svg
-            description: >-
-              猿辅导（Yuanfudao）是一家中国领先的人工智能驱动的在线教育科技公司，成立于2012年，总部位于北京。​公司致力于将人工智能技术应用于教育领域，提供个性化、智能化的学习体验。成立于2012年。
-            project: level2   
-          - item:
-            name: lls流利说
-            homepage_url: https://www.yuanfudao.com
-            logo: 流利说.svg
-            description: >-
-              流利说（LAIX）是一家领先的人工智能驱动的教育科技公司，成立于2012年，总部位于中国上海。成立于2012年。
-          - item:
-            name: 松鼠AI
-            homepage_url: https://www.vipkid.com.cn/
-            logo: 松鼠AI.svg
-            description: >-
-              松鼠AI（Squirrel AI）是一家专注于人工智能教育技术的科技公司
-          - item:
-            name: VIPKID
-            homepage_url: https://www.vipkid.com.cn/
-            logo: VIPKID.svg
-            description: >-
-              以“赋能教育，启迪未来”为使命，致力于实现“让孩子自由的行走于这个星球”的愿景。VIPKID通过结合教育、科技和服务，打造了覆盖全球、满足不同年龄段和地区需求的终身学习产品生态圈。成立于2013年10月。
-      - subcategory:
-        name: 智慧政府
-        items:
-          - item:
-            name: bjsz北京数字政通科技股份
-            homepage_url: https://www.egova.com.cn/
-            logo: 北京数字政通科技股份logo.svg
-            description: >-
-              科技公司。成立于2010年。
-          - item:
-            name: bjhy北京华宇软件股份有限公司
-            homepage_url: https://www.thunisoft.com/
-            logo: 北京华宇软件股份有限公司logo.svg
-            description: >-
-              科技公司。成立于2001年。
-          - item:
-            name: gtxd国泰新点软件股份有限公司
-            homepage_url: https://www.epoint.com.cn/eweb/
-            logo: 国泰新点软件股份有限公司logo.svg
-            description: >-
-              科技公司。成立于1998年。 
-          - item:
-            name: szytl深圳云天励飞技术股份有限公司
-            homepage_url: https://www.intellif.com/
-            logo: 深圳云天励飞技术股份有限公司logo.svg
-            description: >-
-              科技公司。成立于2014年。 
-          - item:
-            name: xhxx星环信息科技股份有限公司
-            homepage_url: https://www.transwarp.cn/
-            logo: 星环信息科技股份有限公司logo.svg
-            description: >-
-              科技公司。成立于2013年。
-          - item:
-            name: yckj云从科技集团股份有限公司
-            homepage_url: https://www.cloudwalk.com/About#intro
-            logo: 云从科技集团股份有限公司logo.svg
-            description: >-
-              科技公司。成立于2015年。  
-      - subcategory:
-        name: 智慧交通
-        items:
-          - item:
-            name: lcy浪潮云信息技术股份公司
-            homepage_url: https://cloud.inspur.com/
-            logo: 浪潮云信息技术股份公司logo.svg
-            description: >-
-              科技公司。成立于2015年3月9日。
-          - item:
-            name: bjqf北京千方科技股份有限公司
-            homepage_url: https://www.ctfo.com/newsDetails?id=1922&source=1
-            logo: 北京千方科技股份有限公司logo.svg
-            description: >-
-              科技公司。成立于2000年。
-          - item:
-            name: bjwj北京万集科技股份有限公司
-            homepage_url: https://www.wanji.net.cn/
-            logo: 北京万集科技股份有限公司logo.svg
-            description: >-
-              科技公司。成立于1994年11月2日。
-          - item:
-            name: bjyhl北京易华录信息技术股份有限公司
-            homepage_url: http://ehualu.corp.dav01.com/
-            logo: 北京易华录信息技术股份有限公司logo.svg
-            description: >-
-              科技公司。成立于2001年。
-          - item:
-            name: jdkj佳都科技集团股份有限公司
-            homepage_url: https://www.pcitech.com/
-            logo: 佳都科技集团股份有限公司logo.svg
-            description: >-
-              科技公司。成立于1992年。  
-          - item:
-            name: mgcl蘑菇车联信息科技有限公司
-            homepage_url: https://www.wanji.net.cn/
-            logo: 蘑菇车联信息科技有限公司logo.svg
-            description: >-
-              科技公司。成立于2017年。 
-      - subcategory:
-        name: 智慧医疗
-        items:
-          - item:
-            name: ydkj医渡科技有限公司
-            homepage_url: https://www.yidu-tech.com
-            logo: 医渡科技有限公司.svg
-            description: >-
-              专注于基于大数据和人工智能技术的医疗解决方案提供商。成立于2014年。
-            project: level1
-          - item:
-            name: xfyl讯飞医疗科技有限公司
-            homepage_url: https://www.iflytek.com
-            logo: 讯飞.svg
-            description: >-
-              科大讯飞医疗是科大讯飞集团的子公司。成立于1999年。
-            project: level2  
-          - item:
-            name: skkj数坤科技有限公司
-            homepage_url: https://www.shukun.com
-            logo: 树坤.svg
-            description: >-
-              数坤科技作为中国AI医疗影像领域的先锋企业，以其创新的技术和产品，为医生和患者提供了高效、精准的智能诊疗解决方案。成立于2017年。
-            project: level3  
-          - item:
-            name: bczn百川智能科技有限公司
-            homepage_url: https://www.baichuan.com
-            logo: 百川.svg
-            description: >-
-              百川智能是一家由中国互联网资深人士王小川于2023年4月创立的人工智能大模型公司，专注于研发通用人工智能基础模型及上层应用，现已跻身中国大模型领域第一梯队。‌成立于2019年。 
-            project: level5   
-          - item:
-            name: sryl深睿医疗科技有限公司
-            homepage_url: https://www.deepwise.com/
-            logo: 深睿医疗.svg
-            description: >-
-              深睿致力于通过突破性的人工智能技术及自主研发的核心算法,为国内外医疗服务机构提供人工智能和互联网医疗解决方案。成立于2019年。      
-
-
-        
+    - name: 智慧金融
+      items:
+      - name: 京东科技集团
+        homepage_url: https://www.jdt.com.cn/
+        logo: 京东科技.svg
+        description: 科技公司，成立于 2012-09
+        project: level1
+      - name: 腾讯云计算（北京）有限责任公司
+        homepage_url: https://cloud.tencent.com/
+        logo: 腾讯云.svg
+        description: 科技公司，成立于 2010-10-21
+        project: level1
+      - name: 蚂蚁科技集团股份有限公司
+        homepage_url: https://www.antgroup.com/
+        logo: 蚂蚁.svg
+        description: 科技公司，成立于 2000-10-19
+        project: level1
+      - name: 百度在线网络技术 (北京) 有限公司
+        homepage_url: https://www.baidu.com
+        logo: 百度.svg
+        description: 科技公司，成立于 2000-01-18
+        project: level1
+      - name: 恒生电子股份有限公司
+        homepage_url: https://www.hundsun.com
+        logo: 恒生电子.svg
+        description: 科技公司，成立于 2000-12-13
+        project: level2
+      - name: 科大讯飞股份有限公司
+        homepage_url: https://www.iflytek.com
+        logo: 讯飞.svg
+        description: 科技公司，成立于 1999-12-30
+        project: level2
+      - name: 第四范式 (北京) 技术有限公司
+        homepage_url: https://www.4paradigm.com
+        logo: 第四范式.svg
+        description: 科技公司，成立于 2015-05-12
+        project: level3
+      - name: 百融云创科技股份有限公司
+        homepage_url: https://www.brgroup.com
+        logo: 百融.svg
+        description: 科技公司，成立于 2014-03-19
+        project: level3
+      - name: 同盾科技有限公司
+        homepage_url: https://www.tongdun.cn
+        logo: 同盾科技.svg
+        description: 科技公司，成立于 2012-10-10
+        project: level3
+      - name: 上海冰鉴信息科技有限公司
+        homepage_url: https://www.icekredit.com
+        logo: 冰鉴.svg
+        description: 科技公司，成立于 2015-06-04
+        project: level3
+      - name: 达而观信息科技（上海）有限公司
+        homepage_url: https://www.datagrand.com/
+        logo: 达而观.svg
+        description: 科技公司，成立于 2015-05-28
