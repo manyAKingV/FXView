@@ -32,10 +32,20 @@
   </FitScreen>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import FitScreen from "@fit-screen/vue";
 import data from "../mock/data.json";
 const showData = ref(data.landscape.category.subcategories);
+
+import jsyaml from 'js-yaml'
+
+onMounted(async () => {
+  const response = await fetch('/static/data.yaml')
+  const yamlText = await response.text()
+  const parsedData = jsyaml.load(yamlText)
+  console.log(parsedData)
+})
+
 </script>
 <style scoped>
 .container {

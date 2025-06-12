@@ -11,6 +11,7 @@
     "@dataview/datav-vue3": "0.0.0-test.1672506674342",
     "@fit-screen/vue": "^1.0.2",
     "@kjgl77/datav-vue3": "^1.7.2",
+    "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@vitejs/plugin-vue": "^5.2.4",
     "axios": "^1.6.8",
     "js-yaml": "^4.1.0",
