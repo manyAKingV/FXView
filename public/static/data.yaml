@@ -192,3 +192,142 @@ landscape:
             logo: 深睿医疗.svg
             description: >-
               深睿致力于通过突破性的人工智能技术及自主研发的核心算法,为国内外医疗服务机构提供人工智能和互联网医疗解决方案。成立于2019年。
+          - name: 深睿医疗科技有限公司02
+            homepage_url: https://www.deepwise.com/
+            logo: 深睿医疗.svg
+            description: >-
+              深睿致力于通过突破性的人工智能技术及自主研发的核心算法,为国内外医疗服务机构提供人工智能和互联网医疗解决方案。成立于2019年。
+
+  - name: Service服务层
+    subcategories:
+      - name: 智能机器人无人机
+        items:
+          - name: jouav
+            homepage_url: https://www.jouav.com/zh/company
+            logo: jouav.svg
+            description: 科技公司，成立于 2010 年 4 月
+            project: level1
+          - name: ehang
+            homepage_url: https://www.ehang.com/cn
+            logo: ehang.svg
+            description: 科技公司，成立于 2014年4月
+            project: level1
+          - name: dj大疆
+            homepage_url: https://www.dji.com/cn
+            logo: 大疆.svg
+            description: 科技公司，成立于 2006年
+            project: level1
+          - name: ql擎朗
+            homepage_url: https://www.keenon.com/cn/
+            logo: 擎朗.svg
+            description: 科技公司，成立于 2010年
+          - name: fmt福玛特
+            homepage_url: https://www.fmart.com.cn/
+            logo: 福玛特.svg
+            description: 科技公司，成立于 2020年02月28日
+      - name: 数字人
+        items:
+          - name: sykj世优科技
+            homepage_url: https://4uavatar.com/
+            logo: 世优科技.svg
+            description: 科技公司，成立于 2015年
+            project: level1
+          - name: yy有言
+            homepage_url: https://www.youyan3d.com/
+            logo: 有言.svg
+            description: 科技公司，成立于 2018年10月29日
+            project: level1
+          - name: xb小冰
+            homepage_url: https://xiaoice.com/
+            logo: 小冰.svg
+            description: 科技公司，成立于 2013年12月
+      - name: 智能驾驶
+        items:
+          - name: tsl特斯拉
+            homepage_url: https://www.tesla.cn/
+            logo: 特斯拉.svg
+            description: 科技公司，成立于 2003年7月1日
+            project: level1
+          - name: apollo
+            homepage_url: https://www.apollo.auto/apollo-self-driving
+            logo: apollo.svg
+            description: 科技公司，成立于 2017年7月
+            project: level1
+          - name: wl蔚来
+            homepage_url: https://www.nio.cn/
+            logo: 蔚来.svg
+            description: 科技公司，成立于 2014年11月
+            project: level2
+          - name: lx理想
+            homepage_url: https://www.lixiang.com/
+            logo: 理想.svg
+            description: 科技公司，成立于 2015年7月
+            project: level2
+          - name: dsxw德赛西威
+            homepage_url: https://www.desaysv.com/
+            logo: 德赛西威.svg
+            description: 科技公司，成立于 1986年07月24日
+            project: level3
+          - name: autox
+            homepage_url: http://autox.tech
+            logo: autox.svg
+            description: 科技公司，成立于 2016年9月
+          - name: jsdz均胜电子
+            homepage_url: https://www.joyson.com/
+            logo: 均胜电子.svg
+            description: 科技公司，成立于 2004年
+      - name: 智能服务
+        items:
+          - name: BigModel
+            homepage_url: https://open.bigmodel.cn/
+            logo: BigModel.svg
+            description: 科技公司，成立于 2012年
+            project: level1
+          - name: gjld硅基流动
+            homepage_url: https://siliconflow.cn/
+            logo: 硅基流动.svg
+            description: 科技公司，成立于 2023年8月29日
+            project: level1
+          - name: txy腾讯云
+            homepage_url: https://cloud.tencent.com/
+            logo: 腾讯云.svg
+            description: 科技公司，成立于 2013年9月
+            project: level1
+          - name: mdsq魔搭社区
+            homepage_url: https://www.modelscope.cn/home
+            logo: 魔搭社区.svg
+            description: 科技公司，成立于 2022年
+            project: level1
+          - name: yx言犀
+            homepage_url: https://yanxi.jd.com/
+            logo: 言犀.svg
+            description: 科技公司，成立于 2023年06月12日
+          - name: hsyq火山引擎
+            homepage_url: https://www.volcengine.com/
+            logo: 火山引擎.svg
+            description: 科技公司，成立于 2020年5月
+      - name: 智能终端设备
+        items:
+          - name: hs华硕
+            homepage_url: https://w3.asus.com.cn/
+            logo: 华硕.svg
+            description: 科技公司，成立于 1989年4月2日
+            project: level1
+          - name: lx联想
+            homepage_url: https://brand.lenovo.com.cn/
+            logo: 联想.svg
+            description: 科技公司，成立于 1984年
+            project: level1
+          - name: hp惠普
+            homepage_url: https://www.hp.com/
+            logo: 惠普.svg
+            description: 科技公司，成立于 1939年
+            project: level2
+          - name: jxgm机械革命
+            homepage_url: https://www.mechrevo.com/
+            logo: 机械革命.svg
+            description: 科技公司，成立于 2014年
+          - name: de戴尔
+            homepage_url: https://www.dell.com/zh-cn
+            logo: 戴尔.svg
+            description: 科技公司，成立于 1984年

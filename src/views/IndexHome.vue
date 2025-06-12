@@ -1,12 +1,12 @@
 <template>
   <FitScreen mode="full" :height="1080" :width="1920">
     <div class="container">
-      <div class="firm-log">
-        <div class="firm-title">{{ data.landscape.category.name }}</div>
+      <div class="firm-log" v-for="(data, index) in showData" :key="index">
+        <div class="firm-title">{{ data.name }}</div>
         <div class="firm-list-container">
           <div
             class="firm-list"
-            v-for="(item, index) in showData"
+            v-for="(item, index) in data.subcategories"
             :key="index"
             :class="{
               'firm-list-one': index === 0,
@@ -19,10 +19,11 @@
             <div class="firm-type">{{ item.name }}</div>
             <div class="firm-list-logo">
               <img
-                :src="require(`@/assets/logos/${it.logo}`)"
+                :src="getLogoUrl(it.logo)"
                 class="firm-list-logo-item-img"
                 v-for="(it, ind) in item.items"
                 :key="ind"
+                @error="handleImageError"
               />
             </div>
           </div>
@@ -34,17 +35,29 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import FitScreen from "@fit-screen/vue";
-import data from "../mock/data.json";
-const showData = ref(data.landscape.category.subcategories);
-
 import jsyaml from 'js-yaml'
+const showData = ref([])
 
 onMounted(async () => {
   const response = await fetch('/static/data.yaml')
   const yamlText = await response.text()
   const parsedData = jsyaml.load(yamlText)
   console.log(parsedData)
+  showData.value = parsedData.landscape
 })
+
+const getLogoUrl = (logoName) => {
+  try {
+    return require(`@/assets/logos/${logoName}`);
+  } catch (e) {
+    return ''; // 返回空字符串表示找不到图片
+  }
+};
+
+// 处理图片加载错误
+const handleImageError = (event) => {
+  event.target.style.display = 'none';
+};
 
 </script>
 <style scoped>
@@ -54,8 +67,6 @@ onMounted(async () => {
   padding: 30px;
 }
 .firm-log {
-  width: 100%;
-  height: 100%;
   background: #e5fbf7;
   border-radius: 8px;
   padding: 12px;
