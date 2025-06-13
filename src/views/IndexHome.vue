@@ -2,23 +2,23 @@
   <FitScreen mode="full" :height="1080" :width="1920">
     <div class="container">
       <div class="container-title">AI全景图</div>
-      <div class="container-content">
+      <div class="container-content" v-for="(subcategory, index) in dataList" :key="index">
         <div class="container-content-box">
           <div class="container-content-box-title">
-            <!-- {{ data.landscape.category.name }} -->
+            {{ subcategory.name }}
             <div class="zoom-controls">
               <button class="zoom-btn" @click="zoomOut">缩小</button>
               <button class="zoom-btn" @click="zoomIn">放大</button>
             </div>
           </div>
-          <div class="container-content-box-show" :style="gridStyle">
+          <div class="container-content-box-show" :style="gridStyle(subcategory)">
             <div
               class="container-content-box-show-item"
               :class="{
                 'container-content-box-show-item-last':
                   index % 4 === 0 && index != 0,
               }"
-              v-for="(item, index) in showData"
+              v-for="(item, index) in subcategory.subcategories"
               :key="index"
             >
               <div class="container-content-box-show-item-title">
@@ -119,15 +119,15 @@ import jsyaml from "js-yaml";
 const currentIndex = ref(null);
 const currentType = ref(null);
 const showDetailInfo = ref(false);
-const showData = ref([]);
-const totle = ref(0);
+const dataList = ref([]);
 
 onBeforeMount(async () => {
   const response = await fetch("/static/data.yaml");
   const yamlText = await response.text();
   const parsedData = jsyaml.load(yamlText);
   console.log(parsedData);
-  showData.value = parsedData.landscape[0].subcategories;
+  dataList.value = parsedData.landscape;
+  // showData.value = parsedData.landscape[0].subcategories;
 });
 const showCompanyInfo = (ind, index, it) => {
   currentIndex.value = ind;
@@ -157,11 +157,21 @@ const contentStyle = computed(() => ({
 
 // 放大功能
 const zoomIn = () => {
-  if (zoomFactor.value < 1.5) {
+  if (zoomFactor.value < 1.5 ) {
     zoomFactor.value += 0.1;
+    checkBounds(); // 添加边界检查
   }
 };
-
+const checkBounds = () => {
+  const contentElements = document.querySelectorAll('.container-content-box-show-item-content');
+  contentElements.forEach(el => {
+    // 检查内容是否超出容器
+    if (el.scrollWidth > el.clientWidth || el.scrollHeight > el.clientHeight) {
+      zoomFactor.value -= 0.1; // 回退缩放级别
+      console.warn("缩放超出边界，已自动调整");
+    }
+  });
+};
 // 缩小功能
 const zoomOut = () => {
   if (zoomFactor.value > 0.7) {
@@ -169,23 +179,24 @@ const zoomOut = () => {
   }
 };
 // 计算盒子大小
-const gridStyle = computed(() => {
-  const ratios = showData.value.map(item => 
-    Math.max(item.items.length, 1) 
+const gridStyle = (subcategory) => {
+  if (!subcategory || !subcategory.subcategories || subcategory.subcategories.length === 0) {
+    return { display: 'grid', gridTemplateColumns: '1fr', gap: '10px' };
+  }
+  
+  const ratios = subcategory.subcategories.map(item => 
+    Math.max(item.items?.length || 0, 1)
   );
+  
   const total = ratios.reduce((sum, val) => sum + val, 0);
-  console.log("数组",ratios,total);
-  const s = {
+  
+  return {
     display: 'grid',
-    gridTemplateColumns: ratios.map(r => 
-      `${(r / total * 100).toFixed(2)}fr`
-    ).join(' '),
+    gridTemplateColumns: ratios.map(r => `${(r / total * 100).toFixed(2)}fr`).join(' '),
     gap: '10px',
     width: '100%'
-  }
-  console.log("样式",s);
-  return s;
-});
+  };
+};
 
 const imgWidth = computed(() => {
   return zoomFactor.value > 1 
