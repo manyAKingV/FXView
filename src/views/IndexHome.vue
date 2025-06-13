@@ -11,7 +11,7 @@
               <button class="zoom-btn" @click="zoomIn">放大</button>
             </div>
           </div>
-          <div class="container-content-box-show">
+          <div class="container-content-box-show" :style="gridStyle">
             <div
               class="container-content-box-show-item"
               :class="{
@@ -30,6 +30,7 @@
                   v-for="(it, ind) in item.items"
                   :key="ind"
                   @click="showCompanyInfo(ind, index, it)"
+                  :style="{width: imgWidth}"
                 >
                   <img
                     :src="require(`@/assets/logos/${it.logo}`)"
@@ -112,21 +113,22 @@
   </FitScreen>
 </template>
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onBeforeMount, computed } from "vue";
 import FitScreen from "@fit-screen/vue";
 import jsyaml from "js-yaml";
 const currentIndex = ref(null);
 const currentType = ref(null);
 const showDetailInfo = ref(false);
 const showData = ref([]);
-onMounted(async () => {
+const totle = ref(0);
+
+onBeforeMount(async () => {
   const response = await fetch("/static/data.yaml");
   const yamlText = await response.text();
   const parsedData = jsyaml.load(yamlText);
   console.log(parsedData);
   showData.value = parsedData.landscape[0].subcategories;
 });
-
 const showCompanyInfo = (ind, index, it) => {
   currentIndex.value = ind;
   currentType.value = index;
@@ -166,6 +168,30 @@ const zoomOut = () => {
     zoomFactor.value -= 0.1;
   }
 };
+// 计算盒子大小
+const gridStyle = computed(() => {
+  const ratios = showData.value.map(item => 
+    Math.max(item.items.length, 1) 
+  );
+  const total = ratios.reduce((sum, val) => sum + val, 0);
+  console.log("数组",ratios,total);
+  const s = {
+    display: 'grid',
+    gridTemplateColumns: ratios.map(r => 
+      `${(r / total * 100).toFixed(2)}fr`
+    ).join(' '),
+    gap: '10px',
+    width: '100%'
+  }
+  console.log("样式",s);
+  return s;
+});
+
+const imgWidth = computed(() => {
+  return zoomFactor.value > 1 
+    ? `${80 / zoomFactor.value}px` 
+    : '80px';
+});
 
 </script>
 <style scoped>
@@ -223,23 +249,18 @@ const zoomOut = () => {
   letter-spacing: 2px;
 }
 .container-content-box-show {
-  padding: 20px;
+  padding: 5px 20px 30px;
   background: #fff0f6;
   min-height: 200px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid !important;
+  grid-auto-flow: row;
 }
-.container-content-box-show-item {
-  margin-right: 6px;
-  margin-top: 10px;
-  width: 362px;
-  box-sizing: border-box;
-}
+
 .container-content-box-show-item-last {
   margin-right: 0px;
 }
 .container-content-box-show-item-title {
-  height: 40px;
+  height: 24px;
   flex-shrink: 0;
   border: 1px solid rgba(0, 0, 0, 0.05);
   background: #fff;
@@ -255,25 +276,25 @@ const zoomOut = () => {
   justify-content: center;
 }
 .container-content-box-show-item-content {
-  padding: 20px;
+  padding: 0 20px;
   background: #fff;
-  height: auto;
   position: relative;
   transition: trasform 0.3s ease;
   display: flex;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 .img-show {
-  width: 80px;
+  /* width: 80px;
   height: 48px;
   padding: 2px;
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  flex: 0 0 auto;
+  margin: 5px;
 }
 .img-item {
   width: 100%;
