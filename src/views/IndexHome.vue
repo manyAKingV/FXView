@@ -5,7 +5,11 @@
       <div class="container-content">
         <div class="container-content-box">
           <div class="container-content-box-title">
-            {{ data.landscape.category.name }}
+            <!-- {{ data.landscape.category.name }} -->
+            <div class="zoom-controls">
+              <button class="zoom-btn" @click="zoomOut">缩小</button>
+              <button class="zoom-btn" @click="zoomIn">放大</button>
+            </div>
           </div>
           <div class="container-content-box-show">
             <div
@@ -20,7 +24,7 @@
               <div class="container-content-box-show-item-title">
                 {{ item.name }}
               </div>
-              <div class="container-content-box-show-item-content">
+              <div class="container-content-box-show-item-content" :style="contentStyle">
                 <div
                   class="img-show"
                   v-for="(it, ind) in item.items"
@@ -108,7 +112,7 @@
   </FitScreen>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import FitScreen from "@fit-screen/vue";
 import jsyaml from "js-yaml";
 const currentIndex = ref(null);
@@ -119,21 +123,10 @@ onMounted(async () => {
   const response = await fetch("/static/data.yaml");
   const yamlText = await response.text();
   const parsedData = jsyaml.load(yamlText);
-  showData.value = parsedData.landscape.category.subcategories;
+  console.log(parsedData);
+  showData.value = parsedData.landscape[0].subcategories;
 });
 
-const getLogoUrl = (logoName) => {
-  try {
-    return require(`@/assets/logos/${logoName}`);
-  } catch (e) {
-    return ""; // 返回空字符串表示找不到图片
-  }
-};
-
-// 处理图片加载错误
-const handleImageError = (event) => {
-  event.target.style.display = "none";
-};
 const showCompanyInfo = (ind, index, it) => {
   currentIndex.value = ind;
   currentType.value = index;
@@ -149,6 +142,31 @@ const pathStamp = () => {
 const handleTime = () => {
   return showDetailInfo.value?.description?.split(" ")?.[1].split("-")?.[0];
 };
+
+const zoomFactor = ref(1);
+
+// 计算内容区域的缩放样式
+const contentStyle = computed(() => ({
+  transform: `scale(${zoomFactor.value})`,
+  transformOrigin: 'top left',
+  width: `${100 / zoomFactor.value}%`,
+  height: `${100 / zoomFactor.value}%`
+}));
+
+// 放大功能
+const zoomIn = () => {
+  if (zoomFactor.value < 1.5) {
+    zoomFactor.value += 0.1;
+  }
+};
+
+// 缩小功能
+const zoomOut = () => {
+  if (zoomFactor.value > 0.7) {
+    zoomFactor.value -= 0.1;
+  }
+};
+
 </script>
 <style scoped>
 .container {
@@ -239,25 +257,28 @@ const handleTime = () => {
 .container-content-box-show-item-content {
   padding: 20px;
   background: #fff;
-  height: 164px;
+  height: auto;
+  position: relative;
+  transition: trasform 0.3s ease;
   display: flex;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* display: flex;
-  flex-wrap: wrap; */
   grid: 10px;
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 .img-show {
   width: 80px;
   height: 48px;
-  padding: 10px;
+  padding: 2px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .img-item {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .img-detail {
   width: 340px;
@@ -353,4 +374,26 @@ const handleTime = () => {
   color: #d91b64;
   text-decoration-color: #d91b64;
 }
+
+.zoom-controls {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.zoom-btn {
+  padding: 6px 12px;
+  background-color: #fe8fb9;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.zoom-btn:hover {
+  background-color: #d91b64;
+}
+
 </style>
