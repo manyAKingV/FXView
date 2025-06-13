@@ -29,84 +29,22 @@
           class="img-show"
           v-for="(it, ind) in item.items"
           :key="ind"
-          @click="showCompanyInfo(ind, index, it)"
+          @click="showCompanyInfo(it, $event)"
         >
           <img :src="require(`@/assets/logos/${it.logo}`)" class="img-item" />
-          <div
-            class="img-detail"
-            v-if="currentIndex === ind && currentType === index"
-          >
-            <div class="img-detail-title">
-              <img
-                class="img-detail-title-img"
-                :src="require(`@/assets/logos/${showDetailInfo?.logo}`)"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 28 28"
-                fill="none"
-                class="img-close"
-                @click="handleClose"
-              >
-                <path
-                  d="M7.63635 7.63635L20.3636 20.3636"
-                  stroke="#666666"
-                  stroke-width="2"
-                />
-                <path
-                  d="M20.3636 7.63635L7.63635 20.3636"
-                  stroke="#666666"
-                  stroke-width="2"
-                />
-              </svg>
-            </div>
-            <div class="img-detail-title-text">
-              {{ showDetailInfo?.name }}
-            </div>
-            <div class="img-detail-title-country">中国</div>
-            <div class="img-detail-title-desc">
-              {{ showDetailInfo?.description }}
-            </div>
-            <div class="img-detail-bottom-desc">
-              <div class="img-detail-bottom-desc-one">
-                创立于<span class="img-detail-bottom-desc-span">{{
-                  handleTime()
-                }}</span>
-              </div>
-              <div class="img-detail-bottom-desc-one">
-                文本展示<span class="img-detail-bottom-desc-span">xxx</span>
-              </div>
-              <div class="img-detail-bottom-desc-web" @click="pathStamp">
-                <span class="web-text">网站</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                >
-                  <path d="M15 9L14.9998 5H10.9998" stroke="black" />
-                  <path d="M15.091 5L11.2046 8.88642" stroke="black" />
-                  <path d="M8.33333 5H5V15H15V11.6667" stroke="black" />
-                </svg>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { ref, defineProps, watch } from "vue";
-const currentIndex = ref(null);
-const currentType = ref(null);
+import { ref, defineProps, watch, defineExpose, defineEmits } from "vue";
 const showDetailInfo = ref(false);
 const currentTitleColor = ref(null);
 const currentContentColor = ref(null);
 const isShowDialog = ref(false);
+const dialogTop = ref(0);
+const dialogLeft = ref(0);
 const props = defineProps({
   showData: {
     type: Array,
@@ -119,24 +57,24 @@ const props = defineProps({
 });
 const bgTitleColor = ["#FE8FB9", "#A6BBE6", "#A6E6DB", "#AEA6E6"];
 const bgContentColor = ["#FFF0F6", "#E2E8F3", "#EAF4F2", "#F6F5FF"];
-const showCompanyInfo = (ind, index, it) => {
-  currentIndex.value = ind;
-  currentType.value = index;
-  //   isShowDialog.value = true;
+const emit = defineEmits(["handleClick"]);
+const showCompanyInfo = (it, event) => {
+  console.log(event, "event");
+  console.log(event.currentTarget.getBoundingClientRect(), "window");
+  isShowDialog.value = true;
   showDetailInfo.value = it;
+
+  dialogTop.value = event.clientY;
+  dialogLeft.value = event.clientX;
+  emit(
+    "handleClick",
+    isShowDialog.value,
+    it,
+    dialogTop.value,
+    dialogLeft.value
+  );
 };
-const handleClose = () => {
-  //isShowDialog.value = false;
-  console.log("handleClose");
-  currentIndex.value = null;
-  currentType.value = null;
-};
-const pathStamp = () => {
-  window.location.href = showDetailInfo.value?.homepage_url;
-};
-const handleTime = () => {
-  return showDetailInfo.value?.description?.split(" ")?.[1]?.split("-")?.[0];
-};
+
 watch(
   () => props.listIndex,
   () => {
@@ -147,6 +85,10 @@ watch(
     immediate: true,
   }
 );
+defineExpose({
+  showDetailInfo,
+  isShowDialog,
+});
 </script>
 <style scoped>
 .container-content-box-title {
@@ -204,12 +146,12 @@ watch(
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 48px);
   border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 .img-show {
   width: 80px;
   height: 48px;
   padding: 10px;
-  position: relative;
 }
 .img-show:hover {
   cursor: pointer;
@@ -230,99 +172,5 @@ watch(
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: #fff;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
-}
-.img-detail {
-  width: 340px;
-  height: 340px;
-  border-radius: 4px;
-  border: 1px solid #c2ccd9;
-  background: #fff;
-  position: absolute;
-  top: 0px;
-  left: 80px;
-  z-index: 99;
-  padding: 20px;
-}
-.img-detail-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.img-detail-title-img {
-  width: 120px;
-  height: 40px;
-  object-fit: cover;
-}
-.img-detail-title-text {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  color: #000;
-  font-family: "PingFang HK";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 1.4px;
-}
-.img-detail-title-country {
-  color: #000;
-  font-family: "PingFang HK";
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 1.2px;
-  opacity: 0.5;
-}
-.img-detail-title-desc {
-  margin: 20px 0;
-  color: #000;
-  font-family: "PingFang HK";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 1.4px;
-}
-.img-detail-bottom-desc {
-  display: flex;
-}
-.img-detail-bottom-desc-one {
-  color: rgba(0, 0, 0, 0.5);
-  font-family: "PingFang HK";
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 1.2px;
-  margin-right: 20px;
-}
-.img-detail-bottom-desc-span {
-  color: #000;
-  margin-left: 8px;
-}
-.img-detail-bottom-desc-web {
-  color: #000;
-  font-family: Avenir;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 1.2px;
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-  text-decoration-skip-ink: auto;
-  text-decoration-thickness: auto;
-  text-underline-offset: auto;
-  text-underline-position: from-font;
-  display: flex;
-}
-.img-close:hover {
-  cursor: pointer;
-}
-.img-detail-bottom-desc-web:hover {
-  cursor: pointer;
-  color: #d91b64;
-  text-decoration-color: #d91b64;
 }
 </style>
