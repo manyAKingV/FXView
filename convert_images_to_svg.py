@@ -18,6 +18,14 @@ def convert_images_to_svg(input_dir: Path, output_dir: Path):
 
     for file in input_dir.iterdir():
         if file.is_file() and file.suffix.lower() in image_extensions:
+
+            svg_path = output_dir / file.with_suffix('.svg').name
+
+            # 检查是否需要跳过已存在的文件
+            if svg_path.exists():
+                print(f"跳过已存在的文件: {svg_path.name}")
+                continue
+
             try:
                 # 打开图片获取尺寸
                 img = Image.open(file)
