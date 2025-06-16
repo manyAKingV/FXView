@@ -7,13 +7,19 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Purge Cache Directories
+        run: |
+          find . -name '__pycache__' -exec rm -rf {} +
+          rm -rf ./build ./.cache /tmp/landscape_cache 2>/dev/null || true
+          docker system prune -a -f --volumes
+
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'  # 使用Python 3.9版本
+          python-version: '3.10'
 
       - name: Install Python dependencies
         run: |
@@ -32,6 +38,9 @@ jobs:
         run: |
           python3 generate_landscape.py
 
+      - name: Reset Build Directory
+        run: rm -rf ./build && mkdir build
+
       - name: Build Project
         run: |
           landscape2 build \
@@ -39,6 +48,7 @@ jobs:
             --settings-file settings.yml \
             --logos-path ./logos/ \
             --output-dir build
+            --no-cache
           
 #      - name: Replace Content
 #        run: |
