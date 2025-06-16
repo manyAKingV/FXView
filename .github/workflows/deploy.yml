@@ -48,7 +48,6 @@ jobs:
             --settings-file settings.yml \
             --logos-path ./logos/ \
             --output-dir build
-            --no-cache
           
 #      - name: Replace Content
 #        run: |
