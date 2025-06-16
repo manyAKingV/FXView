@@ -29,9 +29,30 @@ def convert_images_to_svg(input_dir: Path, output_dir: Path):
             try:
                 # 打开图片获取尺寸
                 img = Image.open(file)
-                
+
+                # 转换为RGBA格式以处理alpha通道
+                img = img.convert("RGBA")
+                # 获取图片数据
+                datas = img.getdata()
+                # 创建新的像素数据列表
+                new_data = []
+                # 白色阈值 - 值越低，只有更接近纯白色的像素才会被转换
+                white_threshold = 240
+                # 处理每个像素
+                for item in datas:
+                    # 如果像素是白色或接近白色，则将其设为透明
+                    if item[0] > white_threshold and item[1] > white_threshold and item[2] > white_threshold:
+                        new_data.append((0, 0, 0, 0))
+                    else:
+                        new_data.append(item)  # 保留原始像素
+                # 应用新的像素数据
+                img.putdata(new_data)
+                # 创建临时文件保存处理后的图片
+                temp_file = Path("temp_image.png")
+                img.save(temp_file, "PNG")
+
                 # 读取图片数据
-                with open(file, 'rb') as f:
+                with open(temp_file, 'rb') as f:
                     img_data = f.read()
                 
                 # 构建Base64编码的SVG内容
@@ -46,11 +67,13 @@ def convert_images_to_svg(input_dir: Path, output_dir: Path):
                 # 写入SVG文件
                 with open(svg_path, 'w', encoding='utf-8') as f:
                     f.write(svg_content)
-                
+
                 print(f"成功转换图片: {file.name} -> {svg_filename}")
                 converted_count += 1
             except Exception as e:
                 print(f"图片转换失败: {file.name} - {str(e)}")
+                if temp_file.exists():
+                    temp_file.unlink()
 
     return converted_count
 
