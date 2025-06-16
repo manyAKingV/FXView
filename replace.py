@@ -207,14 +207,14 @@ def main():
         },
         {
             "file_path": "build/assets/index-CtmZlmQ2.css",
-            "find": r"_catTitle_1rhfx_1\{top:.5rem;left:7px;height:110px;width:30px;-moz-transform:scale$-1,-1$;-webkit-transform:scale$-1,-1$;-o-transform:scale$-1,-1$;-ms-transform:scale$-1,-1$;transform:scale$-1$;writing-mode:vertical-rl;text-orientation:mixed\}",
-            "replace": "_catTitle_1rhfx_1{top:.5rem;left:7px;height:110px;width:30px;writing-mode:vertical-rl;text-orientation:mixed}"
+            "find": r'_catTitle_1rhfx_1\s*\{[^}]*?height:\s*110px[^}]*?\}',
+            "replace": '_catTitle_1rhfx_1{top:.5rem;left:7px;height:50px;width:30px;writing-mode:vertical-rl;text-orientation:mixed}'
         },
         {
             "file_path": "build/assets/index-BmSWXqza.js",
             "find": r'<div><small class="text-muted text-nowrap me-2">VIEW MODE:</small></div>',
             "replace": '<div><small class="text-muted text-nowrap me-2">视图模式:</small></div>'
-        }
+        },
     ]
 
     log_step("执行预定义的文本替换任务")
