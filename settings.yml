@@ -46,6 +46,8 @@ groups:
   - name: Open公司
     categories:
       - Application应用层
+      - Service服务层
+
 
 
 members_category: 会员
