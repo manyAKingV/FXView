@@ -30,6 +30,12 @@
           v-for="(it, ind) in item.items"
           :key="ind"
           @click="showCompanyInfo(it, $event)"
+          :class="{
+            'search-img':
+              searchData?.findIndex((city) => city.name === it.name) !== -1
+                ? true
+                : false,
+          }"
         >
           <img :src="require(`@/assets/logos/${it.logo}`)" class="img-item" />
         </div>
@@ -54,18 +60,28 @@ const props = defineProps({
     type: Number,
     default: 0,
   },
+  searchData: {
+    type: Array,
+    default: () => [],
+  },
 });
 const bgTitleColor = ["#FE8FB9", "#A6BBE6", "#A6E6DB", "#AEA6E6"];
 const bgContentColor = ["#FFF0F6", "#E2E8F3", "#EAF4F2", "#F6F5FF"];
 const emit = defineEmits(["handleClick"]);
 const showCompanyInfo = (it, event) => {
-  console.log(event, "event");
-  console.log(event.currentTarget.getBoundingClientRect(), "window");
   isShowDialog.value = true;
   showDetailInfo.value = it;
-
-  dialogTop.value = event.clientY;
-  dialogLeft.value = event.clientX;
+  const viewportWidth = window.innerWidth;
+  dialogTop.value =
+    event.currentTarget.getBoundingClientRect().top + window.screenY;
+  const target = event.currentTarget;
+  const rect = target.getBoundingClientRect();
+  if (rect.left + 360 > viewportWidth - 20) {
+    // 右侧空间不足，改到左侧
+    dialogLeft.value = rect.left - 340;
+  } else {
+    dialogLeft.value = rect.left + 100;
+  }
   emit(
     "handleClick",
     isShowDialog.value,
@@ -74,7 +90,6 @@ const showCompanyInfo = (it, event) => {
     dialogLeft.value
   );
 };
-
 watch(
   () => props.listIndex,
   () => {
@@ -172,5 +187,11 @@ defineExpose({
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: #fff;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
+}
+.search-img {
+  border-radius: 4px;
+  border: 1px solid #d91b64;
+  background: #fff;
+  box-shadow: 0px 4px 8px 0px #d91b64;
 }
 </style>
