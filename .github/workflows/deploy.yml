@@ -40,9 +40,9 @@ jobs:
             --logos-path ./logos/ \
             --output-dir build
           
-      - name: Replace Content
-        run: |
-          python3 replace.py
+#      - name: Replace Content
+#        run: |
+#          python3 replace.py
 
       # 4. 构建 Docker 镜像
       - name: Build Docker Image
@@ -61,5 +61,4 @@ jobs:
       - name: Push Docker Image
         run: |
           IMAGE_TAG=$(git rev-parse --short HEAD)
-          docker push manyaking/landscape:$IMAGE_TAG
           docker push manyaking/landscape:latest
