@@ -47,6 +47,8 @@ groups:
     categories:
       - Application应用层
       - Service服务层
+      - Technology技术层
+      - Infrastructure基础设施层
 
 
 
