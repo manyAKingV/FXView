@@ -39,4 +39,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.ALICLOUD_ACR_REGISTRY }}/fxview/open_fxview:${{ github.sha }}
+          tags: ${{ secrets.ALICLOUD_ACR_REGISTRY }}/fxview/open_fxview:v1.0.0
