@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import glob
 
 # ========================
 # 日志函数
@@ -76,11 +77,15 @@ def process_json_name_prefix(json_file_path):
 # ========================
 def perform_replace_tasks(tasks):
     for task in tasks:
-        file_path = task["file_path"]
-
-        if not os.path.exists(file_path):
-            print(f"❌ 文件 {file_path} 不存在。跳过此任务。")
+        file_pattern = task["file_path"]
+        files = glob.glob(file_pattern)
+        
+        if not files:
+            print(f"❌ 没有找到匹配的文件: {file_pattern}")
             continue
+
+        if files:
+            file_path = files[0]
 
         with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
@@ -134,37 +139,37 @@ def main():
     # Step 5: 执行其他文本替换任务（如按钮文字等）
     replace_tasks = [
         {
-            "file_path": "build/assets/index-BmSWXqza.js",
+            "file_path": "build/assets/index-*.js",
             "find": r'<div class="d-none d-lg-block fw-semibold ps-2">Filters',
             "replace": '<div class="d-none d-lg-block fw-semibold ps-2">筛选'
         },
         {
-            "file_path": "build/assets/index-BmSWXqza.js",
+            "file_path": "build/assets/index-*.js",
             "find": r"Toe=S\('<div><small class=\"text-muted me-2\">GROUP",
             "replace": "Toe=S('<div><small class=\"text-muted me-2\">分组"
         },
         {
-            "file_path": "build/assets/index-BmSWXqza.js",
+            "file_path": "build/assets/index-*.js",
             "find": r"Doe=S\('<div><small class=\"text-muted me-2\">ZOOM",
             "replace": "Doe=S('<div><small class=\"text-muted me-2\">大小"
         },
         {
-            "file_path": "build/assets/index-BmSWXqza.js",
+            "file_path": "build/assets/index-*.js",
             "find": r'\bGrid\b',
             "replace": '网格'
         },
         {
-            "file_path": "build/assets/index-BmSWXqza.js",
+            "file_path": "build/assets/index-*.js",
             "find": r'\bCard\b',
             "replace": '卡片'
         },
         {
-            "file_path": "build/assets/index-BmSWXqza.js",
+            "file_path": "build/assets/index-*.js",
             "find": r'<button aria-label="Go to &quot;Stats&quot; page">Stats',
             "replace": '<button aria-label="Go to &quot;Stats&quot; page">统计数据'
         },
         {
-            "file_path": "build/assets/index-BmSWXqza.js",
+            "file_path": "build/assets/index-*.js",
             "find": r'<button aria-label="Go to &quot;Explore&quot; page">Explore',
             "replace": '<button aria-label="Go to &quot;Explore&quot; page">生态图'
         },
@@ -174,7 +179,7 @@ def main():
             "replace": '_catTitle_1rhfx_1{top:.5rem;left:7px;height:70px;width:30px;writing-mode:vertical-rl;text-orientation:mixed}'
         },
         {
-            "file_path": "build/assets/index-BmSWXqza.js",
+            "file_path": "build/assets/index-*.js",
             "find": r'<div><small class="text-muted text-nowrap me-2">VIEW MODE:</small></div>',
             "replace": '<div><small class="text-muted text-nowrap me-2">视图模式:</small></div>'
         },
