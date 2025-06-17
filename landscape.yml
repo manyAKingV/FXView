@@ -48,11 +48,11 @@ landscape:
             logo: 有言.svg
             description: 科技公司，成立于 2018年10月29日
             project: level1
-          - item:
-            name: xb小冰
-            homepage_url: https://xiaoice.com/
-            logo: 小冰.svg
-            description: 科技公司，成立于 2013年12月
+          # - item:
+          #   name: xb小冰
+          #   homepage_url: https://xiaoice.com/
+          #   logo: 小冰.svg
+          #   description: 科技公司，成立于 2013年12月
         - subcategory:
           name: 智能驾驶
           items:
@@ -350,27 +350,3 @@ landscape:
             homepage_url: https://www.vipkid.com.cn/
             logo: VIPKID.svg
             description: 以“赋能教育，启迪未来”为使命，致力于实现“让孩子自由的行走于这个星球”的愿景。VIPKID通过结合教育、科技和服务，打造了覆盖全球、满足不同年龄段和地区需求的终身学习产品生态圈。，成立于 2013年10月
-    - category:
-      name: Service服务层s
-      subcategories:
-        - subcategory:
-          name: 智能服务
-          items:
-          - item:
-            name: gjld硅基流动
-            homepage_url: https://siliconflow.cn/
-            logo: 硅基流动.svg
-            description: 科技公司，成立于 2023年8月29日
-            project: level1
-    - category:
-      name: Service服务层。
-      subcategories:
-        - subcategory:
-          name: 智能服务
-          items:
-          - item:
-            name: txy腾讯云
-            homepage_url: https://cloud.tencent.com/
-            logo: 腾讯云.svg
-            description: 科技公司，成立于 2013年9月
-            project: level1
