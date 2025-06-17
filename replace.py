@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import glob
 
 # ========================
 # 日志函数
@@ -113,11 +114,15 @@ def process_json_name_prefix(json_file_path):
 # ========================
 def perform_replace_tasks(tasks):
     for task in tasks:
-        file_path = task["file_path"]
-
-        if not os.path.exists(file_path):
-            print(f"❌ 文件 {file_path} 不存在。跳过此任务。")
+        file_pattern = task["file_path"]
+        files = glob.glob(file_pattern)
+        
+        if not files:
+            print(f"❌ 没有找到匹配的文件: {file_pattern}")
             continue
+
+        if files:
+            file_path = files[0]
 
         with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
