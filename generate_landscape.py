@@ -26,6 +26,14 @@ def ensure_protocol(url):
 # 构建最终结构
 category_map = {}
 
+# 定义一级分类的映射字典
+first_category_mapping = {
+    "应用层": "Application应用层",
+    "服务层": "Service服务层",
+    "技术层": "Technology技术层",
+    "基础设施层": "Infrastructure基础设施层"
+}
+
 # 遍历 .md 文件
 for filename in os.listdir(company_dir):
     if filename.endswith(".md") or filename.endswith(".txt"):
@@ -48,6 +56,9 @@ for filename in os.listdir(company_dir):
         second_category = content.get("二级分类", "其他")
         display_size = content.get("展示大小", "").strip()
         display_priority_str = content.get("展示优先级", "").strip()
+
+        # 使用映射字典更新一级分类
+        mapped_first_category = first_category_mapping.get(first_category, first_category)
 
         display_priority = None
         if display_priority_str.isdigit():
@@ -91,20 +102,20 @@ for filename in os.listdir(company_dir):
             company_obj["project"] = f"level{display_priority}"
 
         # 分类组织
-        if first_category not in category_map:
-            category_map[first_category] = {}
-        if second_category not in category_map[first_category]:
-            category_map[first_category][second_category] = {"large_items": [], "small_items": []}
+        if mapped_first_category not in category_map:
+            category_map[mapped_first_category] = {}
+        if second_category not in category_map[mapped_first_category]:
+            category_map[mapped_first_category][second_category] = {"large_items": [], "small_items": []}
 
         if display_size == "大" and display_priority is not None:
-            category_map[first_category][second_category]["large_items"].append(company_obj)
+            category_map[mapped_first_category][second_category]["large_items"].append(company_obj)
         elif display_size == "小":
-            category_map[first_category][second_category]["small_items"].append({
+            category_map[mapped_first_category][second_category]["small_items"].append({
                 "data": company_obj,
                 "priority": display_priority
             })
         else:
-            category_map[first_category][second_category]["small_items"].append({
+            category_map[mapped_first_category][second_category]["small_items"].append({
                 "data": company_obj,
                 "priority": None
             })

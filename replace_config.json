@@ -1,4 +1,6 @@
 {
   "Service服务层": "服务层",
-  "Application应用层": "应用层"
+  "Application应用层": "应用层",
+  "Technology技术层": "技术层",
+  "Infrastructure基础设施层": "基础设施层"
 }

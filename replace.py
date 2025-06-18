@@ -10,43 +10,6 @@ def log_step(step_name):
     print(f"[INFO] 正在执行步骤: {step_name}")
 
 
-# ========================
-# 提取 company 文件夹中的「一级分类」并生成 replace_config.json
-# ========================
-def update_replace_config(company_dir="company", config_file="replace_config.json"):
-    """遍历 company 目录下的 .md 和 .txt 文件，提取一级分类字段，并写入 replace_config.json"""
-    categories = set()
-
-    if not os.path.exists(company_dir):
-        print(f"[ERROR] 公司目录 {company_dir} 不存在")
-        return
-
-    for root, _, files in os.walk(company_dir):
-        for file in files:
-            if file.endswith(".md") or file.endswith(".txt"):
-                file_path = os.path.join(root, file)
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                
-                # 支持中文或英文冒号 + 空格
-                match = re.search(r'一级分类\s*[:：]\s*(.+)', content)
-                if not match:
-                    match = re.search(r'Category\s*[:：]\s*(.+)', content)
-
-                if match:
-                    raw_category = match.group(1).strip()
-                    categories.add(raw_category)
-
-    # 构建替换映射
-    replacement_dict = {cat: extract_chinese(cat) for cat in categories}
-
-    # 写入 JSON 配置文件
-    with open(config_file, 'w', encoding='utf-8') as f:
-        json.dump(replacement_dict, f, ensure_ascii=False, indent=2)
-
-    print(f"[SUCCESS] 已更新 {config_file}")
-    print(f"[INFO] 替换映射: {replacement_dict}")
-
 
 # ========================
 # 去除字符串开头的英文部分
@@ -154,8 +117,8 @@ def main():
     config_file = 'replace_config.json'
 
     # Step 1: 更新 replace_config.json
-    log_step("更新 replace_config.json 中的 fixed_categories")
-    update_replace_config()
+    # log_step("更新 replace_config.json 中的 fixed_categories")
+    # update_replace_config()
 
     # Step 2: 读取配置文件中的 fixed_categories
     if not os.path.exists(config_file):
@@ -213,7 +176,7 @@ def main():
         {
             "file_path": "build/assets/index-CtmZlmQ2.css",
             "find": r'_catTitle_1rhfx_1\s*\{[^}]*?height:\s*110px[^}]*?\}',
-            "replace": '_catTitle_1rhfx_1{top:.5rem;left:7px;height:50px;width:30px;writing-mode:vertical-rl;text-orientation:mixed}'
+            "replace": '_catTitle_1rhfx_1{top:.5rem;left:7px;height:70px;width:30px;writing-mode:vertical-rl;text-orientation:mixed}'
         },
         {
             "file_path": "build/assets/index-*.js",
