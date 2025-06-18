@@ -25,22 +25,22 @@ featured_items:
     options:
       - value: level1
         order: 1
-        label: level1
+        label: 
       - value: level2
         order: 2
-        label: level2
+        label: 
       - value: level3
         order: 3
-        label: level3
+        label: 
       - value: level4
         order: 4
-        label: level4 
+        label:  
       - value: level5
         order: 5
-        label: level5   
+        label:    
 
 
-grid_items_size: medium
+grid_items_size: small
 
 groups:
   - name: Open公司
