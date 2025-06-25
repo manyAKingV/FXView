@@ -99,7 +99,7 @@ for filename in os.listdir(company_dir):
         }
 
         if display_size == "大" and display_priority is not None:
-            company_obj["project"] = f"level{display_priority}"
+            company_obj["project"] = f"数智{display_priority}"
 
         # 分类组织
         if mapped_first_category not in category_map:
@@ -135,7 +135,7 @@ for first_cat, subcats in category_map.items():
 
         large_items = sorted(
             items_dict["large_items"],
-            key=lambda x: int(x.get("project", "level5").replace("level", ""))
+            key=lambda x: int(x.get("project", "数智5").replace("数智", ""))
         )
 
         small_items_sorted = sorted(

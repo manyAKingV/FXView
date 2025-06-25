@@ -46,7 +46,7 @@ def replace_category_in_html(html_file_path, replacements):
 # ========================
 # JSON name 字段处理函数（去除英文前缀）
 # ========================
-def process_json_name_prefix(json_file_path):
+def process_json_name_prefix(json_file_paths):
     def remove_prefix(name):
         for i, char in enumerate(name):
             if '\u4e00' <= char <= '\u9fff':
@@ -54,19 +54,24 @@ def process_json_name_prefix(json_file_path):
         return name
 
     try:
-        with open(json_file_path, 'r', encoding='utf-8') as file:
-            data = json.load(file)
+        for json_file_path in json_file_paths:
+            if not os.path.exists(json_file_path):
+                print(f"[ERROR] 找不到文件: {json_file_path}")
+                continue
 
-        for item in data.get('items', []):
-            if 'name' in item:
-                original_name = item['name']
-                if any('\u4e00' <= char <= '\u9fff' for char in original_name):
-                    new_name = remove_prefix(original_name)
-                    item['name'] = new_name
+            with open(json_file_path, 'r', encoding='utf-8') as file:
+                data = json.load(file)
 
-        with open(json_file_path, 'w', encoding='utf-8') as file:
-            json.dump(data, file, ensure_ascii=False, indent=2)
-        print("[SUCCESS] JSON 文件中 name 字段处理完成")
+            for item in data.get('items', []):
+                if 'name' in item:
+                    original_name = item['name']
+                    if any('\u4e00' <= char <= '\u9fff' for char in original_name):
+                        new_name = remove_prefix(original_name)
+                        item['name'] = new_name
+
+            with open(json_file_path, 'w', encoding='utf-8') as file:
+                json.dump(data, file, ensure_ascii=False, indent=2)
+            print(f"[SUCCESS] 已完成对文件 {json_file_path} 的 name 字段处理")
 
     except Exception as e:
         print(f"[ERROR] 处理 JSON 文件时发生错误: {e}")
@@ -76,7 +81,7 @@ def process_json_name_prefix(json_file_path):
 # 执行文本替换任务（来自 replace_text.py）
 # ========================
 def perform_replace_tasks(tasks):
-    for task in tasks:
+    for task in tasks:  
         file_pattern = task["file_path"]
         files = glob.glob(file_pattern)
         
@@ -113,12 +118,10 @@ def perform_replace_tasks(tasks):
 def main():
     # 定义路径
     html_file_path = 'build/index.html'
-    json_file_path = 'build/data/full.json'
+    json_file_path = [
+    'build/data/full.json'
+    ]
     config_file = 'replace_config.json'
-
-    # Step 1: 更新 replace_config.json
-    # log_step("更新 replace_config.json 中的 fixed_categories")
-    # update_replace_config()
 
     # Step 2: 读取配置文件中的 fixed_categories
     if not os.path.exists(config_file):
@@ -155,13 +158,23 @@ def main():
         },
         {
             "file_path": "build/assets/index-*.js",
+            "find": r'Rt.Grid',
+            "replace": "\"grid\""
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'Rt.Card',
+            "replace": "\"card\"" 
+        },
+        {
+            "file_path": "build/assets/index-*.js",
             "find": r'\bGrid\b',
-            "replace": '网格'
+            "replace": '行业景观图'
         },
         {
             "file_path": "build/assets/index-*.js",
             "find": r'\bCard\b',
-            "replace": '卡片'
+            "replace": '企业名片'
         },
         {
             "file_path": "build/assets/index-*.js",
@@ -183,8 +196,18 @@ def main():
             "find": r'<div><small class="text-muted text-nowrap me-2">VIEW MODE:</small></div>',
             "replace": '<div><small class="text-muted text-nowrap me-2">视图模式:</small></div>'
         },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'We couldn\'t find any items that match the criteria selected.',
+            "replace": '我们找不到任何符合所选条件的项目。'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'<div>Type <small>/</small> to search items',
+            "replace": '<div>使用 <small>/</small> 搜索公司'
+        }
+        
     ]
-
     log_step("执行预定义的文本替换任务")
     perform_replace_tasks(replace_tasks)
 

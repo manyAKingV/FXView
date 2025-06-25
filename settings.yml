@@ -23,32 +23,32 @@ screenshot_width: 1500
 featured_items:
   - field: maturity
     options:
-      - value: level1
+      - value: 数智1
         order: 1
-        label: 
-      - value: level2
+        label: FusionX
+      - value: 数智2
         order: 2
-        label: 
-      - value: level3
+        label: FusionX
+      - value: 数智3
         order: 3
-        label: 
-      - value: level4
+        label: FusionX
+      - value: 数智4
         order: 4
-        label:  
-      - value: level5
+        label: FusionX 
+      - value: 数智5
         order: 5
-        label:    
+        label: FusionX   
 
 
 grid_items_size: small
 
-groups:
-  - name: Open公司
-    categories:
-      - Application应用层
-      - Service服务层
-      - Technology技术层
-      - Infrastructure基础设施层
+# groups:
+#   - name: Open公司
+#     categories:
+#       - Application应用层
+#       - Service服务层
+#       - Technology技术层
+#       - Infrastructure基础设施层
 
 
 
