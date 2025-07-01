@@ -1,7 +1,7 @@
 name: Landscape2 Build & Deploy
 on:
   push:
-    branches: [ "landscape" ] 
+    branches: [ "main" ] 
 
 jobs:
   build-and-deploy:
@@ -37,10 +37,6 @@ jobs:
             --settings-file settings.yml \
             --logos-path ./logos/ \
             --output-dir build
-      
-      - name: 等待构建完成
-        run: sleep 2
-
 
       - name: 清除英文
         run: |
