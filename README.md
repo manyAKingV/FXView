@@ -1,4 +1,4 @@
-# ✨ FXView - AI Landscape
+#  FXView - AI Landscape
 
 ![image](https://img.shields.io/badge/license-MIT-green)  ![image](https://img.shields.io/badge/contributors-5-blue)  
 
@@ -150,7 +150,7 @@ The Markdown/txt file should contain key-value pairs separated by a colon. Here 
 
 Once you are happy with your changes, commit them and open a pull request against the `landprovide` branch of the main repository. Your changes will be reviewed by the community and then merged to the main branch upon approval.
 
-## 🔭 Deployment
+## 👨🏽‍💻 Deployment
 
 Deployment is handled automatically by a GitHub Actions workflow defined in `.github/workflows/deploy.yml`. When changes are merged from the `landprovide` branch to the main branch, the workflow will:
 
@@ -160,4 +160,4 @@ Deployment is handled automatically by a GitHub Actions workflow defined in `.gi
 4.  Push the Docker image to our container registry.
 
 ---
-*This AI Landscape is a community-driven project. Your contributions are highly valued.*
+* ✨ This AI Landscape is a community-driven project. Your contributions are highly valued.*
