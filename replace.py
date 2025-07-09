@@ -119,7 +119,8 @@ def main():
     # 定义路径
     html_file_path = 'build/index.html'
     json_file_path = [
-    'build/data/full.json'
+    'build/data/full.json',
+    'build/data/base.json'
     ]
     config_file = 'replace_config.json'
 
@@ -178,6 +179,16 @@ def main():
         },
         {
             "file_path": "build/assets/index-*.js",
+            "find": r'\bClassify\b',
+            "replace": '分类' 
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'\bSort\b',
+            "replace": '排序'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
             "find": r'<button aria-label="Go to &quot;Stats&quot; page">Stats',
             "replace": '<button aria-label="Go to &quot;Stats&quot; page">统计数据'
         },
@@ -223,10 +234,39 @@ def main():
         },
         {
             "file_path": "build/assets/index-*.js",
+            "find": r'<div>Landscape</div>',
+            "replace": '<div>下载景观图</div>'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'Landscape in PDF format',
+            "replace": '下载为 PDF 格式'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'Landscape in PNG format',
+            "replace": '下载为 PNG 格式'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'CSV file that contains information about all items available in the landscape',
+            "replace": 'CSV文件，包含所有企业的信息'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'CSV file that contains information about all the projects that are part of the foundation',
+            "replace": 'CSV文件，包含此模块所有企业的信息'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'Data files',
+            "replace": '下载数据文件'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
             "find": r'<div>Type <small>/</small> to search items',
             "replace": '<div>使用 <small>/</small> 搜索公司'
         }
-        
     ]
     log_step("执行预定义的文本替换任务")
     perform_replace_tasks(replace_tasks)

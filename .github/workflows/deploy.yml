@@ -1,7 +1,9 @@
 name: Landscape2 Build & Deploy
 on:
   push:
-    branches: [ "landscape" ] 
+    branches: [ "landscape" ]
+  schedule:
+    - cron: '0 * * * *'
 
 jobs:
   build-and-deploy:

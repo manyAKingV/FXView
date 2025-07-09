@@ -1,5 +1,6 @@
 import os
 import re
+import random
 from pypinyin import lazy_pinyin, Style
 
 # 定义路径
@@ -34,6 +35,9 @@ first_category_mapping = {
     "基础设施层": "Infrastructure基础设施层"
 }
 
+# 收集所有公司数据并分组处理
+all_companies = []
+
 # 遍历 .md 文件
 for filename in os.listdir(company_dir):
     if filename.endswith(".md") or filename.endswith(".txt"):
@@ -54,71 +58,121 @@ for filename in os.listdir(company_dir):
         homepage_url = content.get("官网网站", "")
         first_category = content.get("一级分类", "其他")
         second_category = content.get("二级分类", "其他")
-        display_size = content.get("展示大小", "").strip()
-        display_priority_str = content.get("展示优先级", "").strip()
 
-        # 使用映射字典更新一级分类
+        # 应用一级分类映射（在分组前执行）
         mapped_first_category = first_category_mapping.get(first_category, first_category)
 
-        display_priority = None
-        if display_priority_str.isdigit():
-            num = int(display_priority_str)
-            if 1 <= num <= 5:
-                display_priority = num
+        # 临时存储基础数据
+        all_companies.append({
+            'company_name': company_name,
+            'raw_description': raw_description,
+            'founded_year': founded_year,
+            'homepage_url': homepage_url,
+            'mapped_first_category': mapped_first_category,  # 使用映射后的一级分类
+            'second_category': second_category,
+            'file_path': file_path
+        })
 
-        # 构造描述
-        description_parts = []
-        if raw_description:
-            description_parts.append(raw_description)
+# 按映射后的一级分类+二级分类分组
+category_groups = {}
+for company in all_companies:
+    key = (company['mapped_first_category'], company['second_category'])  # 使用映射后的一级分类
+    if key not in category_groups:
+        category_groups[key] = []
+    category_groups[key].append(company)
+
+# 为每个分组分配展示大小和优先级
+processed_companies = []
+for key, group in category_groups.items():
+    # 随机选择两个大项
+    random.shuffle(group)
+    for i, company in enumerate(group):
+        if i < 2:
+            display_size = "大"
+            display_priority = 1
         else:
-            description_parts.append("科技公司")
-        if founded_year:
-            description_parts.append(f"成立于 {founded_year}")
-        description = "，".join(description_parts)
+            display_size = "小"
+            display_priority = random.randint(1, 6)
+            
+        processed_companies.append({
+            **company,
+            'display_size': display_size,
+            'display_priority': display_priority
+        })
 
-        # 查找 logo
-        logo_filename = None
-        for logo in os.listdir(logos_dir):
-            if logo.lower().endswith(".svg") and (company_name in logo or logo.replace(".svg", "") in company_name):
-                logo_filename = logo
-                break
+# 按原始文件顺序重组数据（保持原有文件处理顺序）
+file_order = {c['file_path']: i for i, c in enumerate(all_companies)}
+processed_companies.sort(key=lambda x: file_order[x['file_path']])
 
-        # 添加拼音前缀
-        prefix = get_chinese_prefix(company_name)
-        prefixed_company_name = prefix + company_name if prefix else company_name
-        
-        # 补全官网链接协议头
-        homepage_url = ensure_protocol(homepage_url)
+# 构建最终分类结构
+for company in processed_companies:
+    company_name = company['company_name']
+    raw_description = company['raw_description']
+    founded_year = company['founded_year']
+    homepage_url = company['homepage_url']
+    first_category = company['mapped_first_category']  # 使用映射后的一级分类
+    second_category = company['second_category']
+    display_size = company['display_size']
+    display_priority = company['display_priority']
 
-        # 构建公司对象
-        company_obj = {
-            "name": prefixed_company_name,
-            "homepage_url": homepage_url,
-            "logo": logo_filename if logo_filename else "",
-            "description": description,
-        }
+    # 使用映射字典更新一级分类
+    mapped_first_category = first_category_mapping.get(first_category, first_category)
 
-        if display_size == "大" and display_priority is not None:
-            company_obj["project"] = f"数智{display_priority}"
+    display_priority_str = str(display_priority) if display_priority is not None else ""
 
-        # 分类组织
-        if mapped_first_category not in category_map:
-            category_map[mapped_first_category] = {}
-        if second_category not in category_map[mapped_first_category]:
-            category_map[mapped_first_category][second_category] = {"large_items": [], "small_items": []}
+    # 构造描述
+    description_parts = []
+    if raw_description:
+        description_parts.append(raw_description)
+    else:
+        description_parts.append("科技公司")
+    if founded_year:
+        description_parts.append(f"成立于 {founded_year}")
+    description = "，".join(description_parts)
 
-        if display_size == "大" and display_priority is not None:
-            category_map[mapped_first_category][second_category]["large_items"].append(company_obj)
-        elif display_size == "小":
-            category_map[mapped_first_category][second_category]["small_items"].append({
-                "data": company_obj,
-                "priority": display_priority
-            })
-        else:
-            category_map[mapped_first_category][second_category]["small_items"].append({
-                "data": company_obj,
-                "priority": None
-            })
+    # 查找 logo
+    logo_filename = None
+    for logo in os.listdir(logos_dir):
+        if logo.lower().endswith(".svg") and (company_name in logo or logo.replace(".svg", "") in company_name):
+            logo_filename = logo
+            break
+
+    # 添加拼音前缀
+    prefix = get_chinese_prefix(company_name)
+    prefixed_company_name = prefix + company_name if prefix else company_name
+    
+    # 补全官网链接协议头
+    homepage_url = ensure_protocol(homepage_url)
+
+    # 构建公司对象
+    company_obj = {
+        "name": prefixed_company_name,
+        "homepage_url": homepage_url,
+        "logo": logo_filename if logo_filename else "",
+        "description": description,
+    }
+
+    if display_size == "大" and display_priority is not None:
+        company_obj["project"] = f"数智{display_priority}"
+
+    # 分类组织
+    if mapped_first_category not in category_map:
+        category_map[mapped_first_category] = {}
+    if second_category not in category_map[mapped_first_category]:
+        category_map[mapped_first_category][second_category] = {"large_items": [], "small_items": []}
+
+    if display_size == "大" and display_priority is not None:
+        category_map[mapped_first_category][second_category]["large_items"].append(company_obj)
+    elif display_size == "小":
+        category_map[mapped_first_category][second_category]["small_items"].append({
+            "data": company_obj,
+            "priority": display_priority
+        })
+    else:
+        category_map[mapped_first_category][second_category]["small_items"].append({
+            "data": company_obj,
+            "priority": None
+        })
 
 # 手动构建 YAML 内容字符串
 yaml_content = "landscape:\n"
