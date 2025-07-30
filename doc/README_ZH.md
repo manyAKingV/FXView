@@ -1,4 +1,4 @@
-#  FXView - AI 生态图谱
+#  FXView - AI 行业生态图谱
 
 ![image](https://img.shields.io/badge/license-MIT-green)  ![image](https://img.shields.io/badge/contributors-5-blue)  
 
