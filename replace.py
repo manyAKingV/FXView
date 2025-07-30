@@ -119,7 +119,8 @@ def main():
     # 定义路径
     html_file_path = 'build/index.html'
     json_file_path = [
-    'build/data/full.json'
+    'build/data/full.json',
+    'build/data/base.json'
     ]
     config_file = 'replace_config.json'
 
@@ -178,6 +179,16 @@ def main():
         },
         {
             "file_path": "build/assets/index-*.js",
+            "find": r'\bClassify\b',
+            "replace": '分类' 
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'\bSort\b',
+            "replace": '排序'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
             "find": r'<button aria-label="Go to &quot;Stats&quot; page">Stats',
             "replace": '<button aria-label="Go to &quot;Stats&quot; page">统计数据'
         },
@@ -202,11 +213,60 @@ def main():
             "replace": '我们找不到任何符合所选条件的项目。'
         },
         {
+            "file_path": "build/assets/Content-DJhuJTiO.js",
+            "find": r'<div class="mb-2 mb-lg-5"><div>Projects</div><div>Distribution by maturity</div>',
+            "replace": '<div class="mb-2 mb-lg-5"><div>企业统计</div><div>按照成熟度分布</div>'
+        },
+        {
+            "file_path": "build/assets/Content-DJhuJTiO.js",
+            "find": r'fallback:"Distribution by category and subcategory",',
+            "replace": 'fallback:"按类别和子类别分布",'
+        },
+        {
+            "file_path": "build/assets/Content-DJhuJTiO.js",
+            "find": r'<th class="text-center border-start-0"scope=col>Category / Subcategory</th><th scope=col>Projects</th>',
+            "replace": '<th class="text-center border-start-0"scope=col>类别 / 子类别</th><th scope=col>项目数</th>'
+        },
+        {
+            "file_path": "build/assets/Content-DJhuJTiO.js",
+            "find": r'\bTotal\b',
+            "replace": "总计"
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'<div>Landscape</div>',
+            "replace": '<div>下载景观图</div>'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'Landscape in PDF format',
+            "replace": '下载为 PDF 格式'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'Landscape in PNG format',
+            "replace": '下载为 PNG 格式'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'CSV file that contains information about all items available in the landscape',
+            "replace": 'CSV文件，包含所有企业的信息'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'CSV file that contains information about all the projects that are part of the foundation',
+            "replace": 'CSV文件，包含此模块所有企业的信息'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'Data files',
+            "replace": '下载数据文件'
+        },
+        {
             "file_path": "build/assets/index-*.js",
             "find": r'<div>Type <small>/</small> to search items',
             "replace": '<div>使用 <small>/</small> 搜索公司'
         }
-        
     ]
     log_step("执行预定义的文本替换任务")
     perform_replace_tasks(replace_tasks)

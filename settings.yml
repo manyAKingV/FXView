@@ -3,12 +3,12 @@ url: https://www.fusionx.net
 
 colors:
   color1: rgba(32, 145, 208, 1)  # 主蓝色
-  color2: rgba(5, 85, 182, 1)     # 深蓝色
-  color3: rgba(32, 145, 208, 1)   # 同主蓝
-  color4: rgba(32, 145, 208, 0.9) # 半透明主蓝
-  color5: rgba(32, 145, 208, 0.85)
-  color6: rgba(52, 198, 243, 0.85) # 青蓝色
-  color7: rgba(232, 244, 250, 1)
+  color2: rgba(75, 47, 169, 1)    # 主紫色
+  color3: rgba(255, 105, 0, 1)    # 橙色
+  color4: rgba(46, 196, 182, 0.9) # 蓝绿色
+  color5: rgba(255, 193, 7, 0.85) # 琥珀色
+  color6: rgba(75, 192, 192, 0.85) # 蓝绿色
+  color7: rgba(238, 238, 238, 1)  # 浅灰色背景
 footer: # 页脚
   links:
     github: https://github.com/openfusionx/FXView
@@ -40,7 +40,7 @@ featured_items:
         label: FusionX   
 
 
-grid_items_size: small
+grid_items_size: medium
 
 # groups:
 #   - name: Open公司
