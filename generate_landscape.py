@@ -1,6 +1,7 @@
 import os
 import re
 import random
+import math
 from pypinyin import lazy_pinyin, Style
 
 # 定义路径
@@ -84,10 +85,14 @@ for company in all_companies:
 # 为每个分组分配展示大小和优先级
 processed_companies = []
 for key, group in category_groups.items():
-    # 随机选择两个大项
+    # 计算大项数量（10%向上取整，至少1个）
+    large_count = max(1, math.ceil(len(group) * 0.1))
+    # 随机打乱
     random.shuffle(group)
+    
+    # 修改判断条件，使用large_count控制大项数量
     for i, company in enumerate(group):
-        if i < 2:
+        if i < large_count:
             display_size = "大"
             display_priority = 1
         else:

@@ -68,6 +68,12 @@ def process_json_name_prefix(json_file_paths):
                     if any('\u4e00' <= char <= '\u9fff' for char in original_name):
                         new_name = remove_prefix(original_name)
                         item['name'] = new_name
+                #替换分类名称    
+                if 'category' in item:
+                    original_category = item['category']
+                    if any('\u4e00' <= char <= '\u9fff' for char in original_category):
+                        new_category = remove_prefix(original_category)
+                        item['category'] = new_category
 
             with open(json_file_path, 'w', encoding='utf-8') as file:
                 json.dump(data, file, ensure_ascii=False, indent=2)
