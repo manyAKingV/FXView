@@ -2,7 +2,7 @@
 
 ![image](https://img.shields.io/badge/license-MIT-green)  ![image](https://img.shields.io/badge/contributors-5-blue)  
 
-FXView 是一个基于 CNCF 的 [Landscape2](https://github.com/cncf/landscape2) 工具构建的 AI 生态系统交互式图谱。它提供了一个动态且可筛选的 AI 公司和项目视图。
+FXView 是一个基于 CNCF开源 的 [Landscape2](https://github.com/cncf/landscape2) 工具构建的 AI 生态系统交互式图谱。它提供了一个动态且可筛选的 AI行业公司和项目视图。
 
 本项目由 [FusionX](https://www.fusionx.net/) 支持。
 
@@ -78,76 +78,9 @@ FXView 是一个基于 CNCF 的 [Landscape2](https://github.com/cncf/landscape2)
 
 ## 🤝 如何贡献
 
-我们欢迎贡献！要在图谱中添加或更新条目，请遵循此流程。
+[开发人员](https://github.com/Ada-pro/FXView/blob/main/doc/Contribution_development.md)
 
-### 1. Fork 和分支
-
-Fork 仓库并切换到 `landprovide` 分支：
-```bash
-git clone https://github.com/openfusionx/FXView.git
-cd FXView
-git checkout landprovide
-```
-
-### 2. 添加或更新公司信息
-
-- **添加新公司**：在 `/company` 目录中创建新的 Markdown/txt 文件（例如，`company_name.md`、`company_name.txt`）。
-- **更新公司**：编辑 `/company` 目录中现有的 Markdown/txt 文件。
-
-Markdown/txt 文件应包含用冒号分隔的键值对。以下是一个示例：
-
-```markdown
-名称: FusionX
-描述: FusionX is a company focused on AI...
-成立时间: 2023
-官网网站: https://www.fusionxu.com/
-一级分类: 应用层
-二级分类: AI平台
-展示大小: 大
-展示优先级: 1
-```
-
-**字段描述：**
-
-- `名称`：（必填）公司或项目的名称。
-- `描述`：简要描述。
-- `成立时间`：公司成立的年份。
-- `官网网站`：官方网站 URL。
-- `一级分类`：主要类别。必须是以下之一：`应用层`、`服务层`、`技术层`、`基础设施层`。
-- `二级分类`：子类别。
-- `展示大小`：控制图谱上的显示大小。使用 `大` 表示大标志，`小` 表示小标志。
-- `展示优先级`：1 到 5 的数字，决定子类别内的排序顺序。`1` 是最高优先级。
-
-### 3. 添加标志
-
-- 将公司标志添加到 `company/logos` 目录。
-
-- 如果您添加非 SVG 标志（如 `.png`、`.jpg` 或 `.jpeg`），必须运行转换脚本以自动将其转换为 SVG。转换后将删除原始文件。
-    ```bash
-    python convert_images_to_svg.py
-    ```
-- 标志文件名最好与公司名称匹配，以便于识别。
-
-### 4. 本地测试您的更改
-
-1.  运行生成脚本以更新 `landscape.yml`。如果您添加了非 SVG 标志，请记住先运行转换脚本。
-    ```bash
-    python generate_landscape.py
-    ```
-2.  构建并提供图谱服务以预览您的更改：
-    ```bash
-    landscape2 build \
-            --data-file landscape.yml \
-            --settings-file settings.yml \
-            --logos-path ./logos/ \
-            --output-dir build
-    landscape2 serve --landscape-dir build
-    ```
-    验证您的新条目是否正确显示。
-
-### 5. 提交拉取请求
-
-当您完成完成验证后，提交它们并针对主仓库的 `landprovide` 分支打开拉取请求。您的更改将由社区审查，然后在批准后合并到主分支。
+[非开发人员](https://github.com/Ada-pro/FXView/blob/main/doc/%E5%A6%82%E4%BD%95%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE_%E9%9D%9E%E6%8A%80%E6%9C%AF.md)
 
 ## 👨🏽‍💻 部署
 
@@ -159,4 +92,4 @@ Markdown/txt 文件应包含用冒号分隔的键值对。以下是一个示例�
 4.  将 Docker 镜像推送到我们的容器注册表。
 
 ---
-* ✨ FXView是一个社区驱动的项目，期待大家积极参与贡献！。*
+* ✨ FXView是一个社区驱动的项目，期待大家积极参与贡献！*
