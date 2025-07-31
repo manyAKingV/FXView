@@ -2,6 +2,8 @@
 
 ![image](https://img.shields.io/badge/license-MIT-green)  ![image](https://img.shields.io/badge/contributors-5-blue)  
 
+English | [中文](doc/README_ZH.md)
+
 FXView is an interactive landscape of the AI ecosystem, powered by the CNCF's [Landscape2](https://github.com/cncf/landscape2) tool. It provides a dynamic and filterable view of AI companies and projects.
 
 This project is supported by [FusionX](https://www.fusionx.net/).
