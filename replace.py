@@ -201,7 +201,7 @@ def main():
         {
             "file_path": "build/assets/index-*.js",
             "find": r'<button aria-label="Go to &quot;Explore&quot; page">Explore',
-            "replace": '<button aria-label="Go to &quot;Explore&quot; page">生态图'
+            "replace": '<button aria-label="Go to &quot;Explore&quot; page">AI行业全景图'
         },
         {
             "file_path": "build/assets/index-CtmZlmQ2.css",
