@@ -272,6 +272,21 @@ def main():
             "file_path": "build/assets/index-*.js",
             "find": r'<div>Type <small>/</small> to search items',
             "replace": '<div>使用 <small>/</small> 搜索公司'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'CNCF interactive landscapes generator',
+            "replace": 'FXView'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'https://github.com/cncf/landscape2',
+            "replace": 'https://github.com/openfusionx/FXView'
+        },
+        {
+            "file_path": "build/assets/index-*.js",
+            "find": r'Ij=S\(\'<svg stroke=currentColor fill=currentColor',
+            "replace": 'Ij=S(\'<svg stroke=black fill=black'
         }
     ]
     log_step("执行预定义的文本替换任务")
