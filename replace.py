@@ -276,7 +276,7 @@ def main():
         {
             "file_path": "build/assets/index-*.js",
             "find": r'CNCF interactive landscapes generator',
-            "replace": 'FXView'
+            "replace": 'openFusionX'
         },
         {
             "file_path": "build/assets/index-*.js",
